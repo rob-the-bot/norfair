@@ -26,7 +26,6 @@ class Tracker:
         self.hit_inertia_min = hit_inertia_min
         self.hit_inertia_max = hit_inertia_max
         self.filter_setup = filter_setup
-        self.frame_num = 0
         if past_detections_length >= 0:
             self.past_detections_length = past_detections_length
         else:
