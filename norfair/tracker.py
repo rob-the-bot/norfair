@@ -26,6 +26,7 @@ class Tracker:
         self.hit_inertia_min = hit_inertia_min
         self.hit_inertia_max = hit_inertia_max
         self.filter_setup = filter_setup
+        self.frame_num = 0
         if past_detections_length >= 0:
             self.past_detections_length = past_detections_length
         else:
@@ -54,7 +55,7 @@ class Tracker:
         self.period = period
 
         # Remove stale trackers and make candidate object real if it has hit inertia
-        self.tracked_objects = [o for o in self.tracked_objects if o.has_inertia]
+        # self.tracked_objects = [o for o in self.tracked_objects if o.has_inertia]
 
         # Update tracker
         for obj in self.tracked_objects:
@@ -71,21 +72,23 @@ class Tracker:
         )
 
         # Create new tracked objects from remaining unmatched detections
-        for detection in unmatched_detections:
-            self.tracked_objects.append(
-                TrackedObject(
-                    detection,
-                    self.hit_inertia_min,
-                    self.hit_inertia_max,
-                    self.initialization_delay,
-                    self.detection_threshold,
-                    self.period,
-                    self.point_transience,
-                    self.filter_setup,
-                    self.past_detections_length
+        if not self.frame_num:
+            for detection in unmatched_detections:
+                self.tracked_objects.append(
+                    TrackedObject(
+                        detection,
+                        self.hit_inertia_min,
+                        self.hit_inertia_max,
+                        self.initialization_delay,
+                        self.detection_threshold,
+                        self.period,
+                        self.point_transience,
+                        self.filter_setup,
+                        self.past_detections_length
+                    )
                 )
-            )
 
+        self.frame_num += 1
         return [p for p in self.tracked_objects if not p.is_initializing]
 
     def update_objects_in_place(
@@ -151,7 +154,18 @@ class Tracker:
                     else:
                         unmatched_detections.append(matched_detection)
             else:
-                unmatched_detections = detections
+                # zero-order hold
+                if objects:
+                    matched_object = objects[0]
+
+                    points = matched_object.last_detection.points
+                    detection = Detection(points, matched_object.last_detection.scores)
+                    matched_object.hit(detection, period=self.period)
+
+                    matched_object.last_distance = self.distance_function(detection, matched_object)
+                    unmatched_detections = []
+                else:
+                    unmatched_detections = detections
         else:
             unmatched_detections = []
 
