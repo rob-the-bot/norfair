@@ -71,24 +71,6 @@ class Tracker:
             [o for o in self.tracked_objects if o.is_initializing], unmatched_detections
         )
 
-        # Create new tracked objects from remaining unmatched detections
-        if not self.frame_num:
-            for detection in unmatched_detections:
-                self.tracked_objects.append(
-                    TrackedObject(
-                        detection,
-                        self.hit_inertia_min,
-                        self.hit_inertia_max,
-                        self.initialization_delay,
-                        self.detection_threshold,
-                        self.period,
-                        self.point_transience,
-                        self.filter_setup,
-                        self.past_detections_length
-                    )
-                )
-
-        self.frame_num += 1
         return [p for p in self.tracked_objects if not p.is_initializing]
 
     def update_objects_in_place(
@@ -155,17 +137,14 @@ class Tracker:
                         unmatched_detections.append(matched_detection)
             else:
                 # zero-order hold
-                if objects:
-                    matched_object = objects[0]
+                matched_object = objects[0]
 
-                    points = matched_object.last_detection.points
-                    detection = Detection(points, matched_object.last_detection.scores)
-                    matched_object.hit(detection, period=self.period)
+                points = matched_object.last_detection.points
+                detection = Detection(points, matched_object.last_detection.scores)
+                matched_object.hit(detection, period=self.period)
 
-                    matched_object.last_distance = self.distance_function(detection, matched_object)
-                    unmatched_detections = []
-                else:
-                    unmatched_detections = detections
+                matched_object.last_distance = self.distance_function(detection, matched_object)
+                unmatched_detections = []
         else:
             unmatched_detections = []
 
