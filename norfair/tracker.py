@@ -52,10 +52,7 @@ class Tracker:
 
     def update(self, detections: Optional[List["Detection"]] = None, period: int = 1):
         self.period = period
-
-        # Remove stale trackers and make candidate object real if it has hit inertia
-        # self.tracked_objects = [o for o in self.tracked_objects if o.has_inertia]
-
+        
         # Update tracker
         for obj in self.tracked_objects:
             obj.tracker_step()
@@ -64,11 +61,6 @@ class Tracker:
         unmatched_detections = self.update_objects_in_place(
             [o for o in self.tracked_objects if not o.is_initializing], detections
         )
-
-        # Update not yet initialized tracked objects with yet unmatched detections
-        # unmatched_detections = self.update_objects_in_place(
-        #     [o for o in self.tracked_objects if o.is_initializing], unmatched_detections
-        # )
 
         return [p for p in self.tracked_objects if not p.is_initializing]
 
