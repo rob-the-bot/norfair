@@ -52,7 +52,7 @@ class Tracker:
 
     def update(self, detections: Optional[List["Detection"]] = None, period: int = 1):
         self.period = period
-        
+
         # Update tracker
         for obj in self.tracked_objects:
             obj.tracker_step()
@@ -128,13 +128,12 @@ class Tracker:
                         unmatched_detections.append(matched_detection)
             else:
                 # zero-order hold
-                matched_object = objects[0]
+                for matched_object in objects:
+                    points = matched_object.last_detection.points
+                    detection = Detection(points, matched_object.last_detection.scores)
+                    matched_object.hit(detection, period=self.period)
 
-                points = matched_object.last_detection.points
-                detection = Detection(points, matched_object.last_detection.scores)
-                matched_object.hit(detection, period=self.period)
-
-                matched_object.last_distance = self.distance_function(detection, matched_object)
+                    matched_object.last_distance = self.distance_function(detection, matched_object)
                 unmatched_detections = []
         else:
             unmatched_detections = []
