@@ -66,9 +66,9 @@ class Tracker:
         )
 
         # Update not yet initialized tracked objects with yet unmatched detections
-        unmatched_detections = self.update_objects_in_place(
-            [o for o in self.tracked_objects if o.is_initializing], unmatched_detections
-        )
+        # unmatched_detections = self.update_objects_in_place(
+        #     [o for o in self.tracked_objects if o.is_initializing], unmatched_detections
+        # )
 
         return [p for p in self.tracked_objects if not p.is_initializing]
 
