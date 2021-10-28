@@ -2,11 +2,17 @@ import math
 from typing import Callable, List, Optional, Sequence
 
 import numpy as np
+import cv2
+from numpy.core.fromnumeric import mean
 from rich import print
 
-from .utils import validate_points
+from .utils import validate_points, crop_resize
 from .filter import FilterSetup
 
+from sklearn.linear_model import SGDClassifier, LogisticRegression
+from sklearn.preprocessing import StandardScaler
+
+from scipy.spatial.distance import pdist
 
 class Tracker:
     def __init__(
@@ -26,6 +32,10 @@ class Tracker:
         self.hit_inertia_min = hit_inertia_min
         self.hit_inertia_max = hit_inertia_max
         self.filter_setup = filter_setup
+        self.tracked_obj_img_list = []
+        self.non_tracked_obj_img_list = []
+        self.clf = SGDClassifier()
+        self.density = []
         if past_detections_length >= 0:
             self.past_detections_length = past_detections_length
         else:
@@ -50,7 +60,7 @@ class Tracker:
         self.point_transience = point_transience
         TrackedObject.count = 0
 
-    def update(self, detections: Optional[List["Detection"]] = None, period: int = 1):
+    def update(self, detections: Optional[List["Detection"]] = None, period: int = 1, frame=None):
         self.period = period
 
         # Update tracker
@@ -59,7 +69,7 @@ class Tracker:
 
         # Update initialized tracked objects with detections
         unmatched_detections = self.update_objects_in_place(
-            [o for o in self.tracked_objects if not o.is_initializing], detections
+            [o for o in self.tracked_objects if not o.is_initializing], detections, frame
         )
 
         return [p for p in self.tracked_objects if not p.is_initializing]
@@ -68,6 +78,7 @@ class Tracker:
         self,
         objects: Sequence["TrackedObject"],
         detections: Optional[List["Detection"]],
+        frame,
     ):
         if detections is not None and len(detections) > 0:
             distance_matrix = np.ones((len(detections), len(objects)), dtype=np.float32)
@@ -124,20 +135,73 @@ class Tracker:
                     if match_distance < self.distance_threshold:
                         matched_object.hit(matched_detection, period=self.period)
                         matched_object.last_distance = match_distance
+
+                        # add img to list (for training)
+                        self.tracked_obj_img_list.append(crop_resize(frame, matched_object.estimate))
+
+                        self.density.append(pdist(matched_detection.points).mean())
                     else:
                         unmatched_detections.append(matched_detection)
             else:
-                # zero-order hold
-                for matched_object in objects:
-                    points = matched_object.last_detection.points
-                    detection = Detection(points, matched_object.last_detection.scores)
-                    matched_object.hit(detection, period=self.period)
+                # when no match with detections
+                # First try use the SGD model
+                X_train = np.vstack((self.tracked_obj_img_list, self.non_tracked_obj_img_list))
+                y_train = np.hstack(([0]*len(self.tracked_obj_img_list), [1]*len(self.non_tracked_obj_img_list)))
+                scaler = StandardScaler()
+                X_train_scaled = scaler.fit_transform(X_train)
+                self.clf.fit(X_train_scaled, y_train)
+                self.tracked_obj_img_list = self.tracked_obj_img_list[-1:]
+                self.non_tracked_obj_img_list = self.non_tracked_obj_img_list[-1:]
 
-                    matched_object.last_distance = self.distance_function(detection, matched_object)
+                predict_vals = self.clf.predict([crop_resize(frame, detection.points) for detection in detections])
+                if 0 in predict_vals: # match
+
+                    matched_object = objects[0]
+                    distance_list = []
+                    for i, detection in enumerate(detections):
+                        if predict_vals[i]: # set unmatched distance to inf
+                            dist = np.inf
+                        else:
+                            dist = self.distance_function(detection, matched_object)
+                        distance_list.append(dist)
+
+                    min_distance = np.min(distance_list)
+                    if min_distance < 2*self.distance_threshold:
+                        # [Potential] matched detection which has the smallest distance
+                        matched_detection = detections[np.argmin(distance_list)]
+                        density = pdist(matched_detection.points).mean()
+                        
+                        mean_tmp = np.mean(self.density)
+                        std_tmp = np.std(self.density)
+                        # import matplotlib.pyplot as plt
+                        # plt.figure()
+                        # plt.hist(self.density)
+                        # plt.show()
+                        if np.abs((density-mean_tmp)/std_tmp) < 1: # density must agree!!!
+                            self.density.append(density)
+                            matched_object.hit(matched_detection, period=self.period)
+                            matched_object.last_distance = self.distance_function(detection, matched_object)
+
+                    else: # no match from our classifier, do zero-order hold
+                        for matched_object in objects:
+                            points = matched_object.last_detection.points
+                            detection = Detection(points, matched_object.last_detection.scores)
+                            matched_object.hit(detection, period=self.period)
+
+                            matched_object.last_distance = self.distance_function(detection, matched_object)
+                else: # no match from our classifier, do zero-order hold
+                    for matched_object in objects:
+                        points = matched_object.last_detection.points
+                        detection = Detection(points, matched_object.last_detection.scores)
+                        matched_object.hit(detection, period=self.period)
+
+                        matched_object.last_distance = self.distance_function(detection, matched_object)
                 unmatched_detections = []
         else:
             unmatched_detections = []
 
+        for unmatched_detection in unmatched_detections:
+            self.non_tracked_obj_img_list.append(crop_resize(frame, unmatched_detection.points))
         return unmatched_detections
 
     def match_dets_and_objs(self, distance_matrix: np.array):
