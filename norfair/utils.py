@@ -2,6 +2,7 @@ import os
 from typing import Sequence, Tuple
 
 import numpy as np
+import cv2
 from rich import print
 from rich.console import Console
 from rich.table import Table
@@ -69,6 +70,29 @@ def get_cutout(points, image):
     min_y = int(min(points[:, 1]))
     return image[min_y:max_y, min_x:max_x]
 
+
+# bounding box function
+def bounding_box(points):
+
+    # remove rows having all zeroes
+    data = points[~np.all(points == 0, axis=1)]
+    xmin, ymin = data.min(axis=0)
+    xmax, ymax = data.max(axis=0)
+
+    return max(round(xmin), 0), max(round(ymin), 0), max(round(xmax), 0), max(round(ymax), 0)
+
+
+def crop_resize(frame, points):
+    xmin, ymin, xmax, ymax = bounding_box(points)
+    if ymin==ymax:
+        ymax+=1
+    if xmin==xmax:
+        xmax+=1
+
+    img = frame[ymin:ymax, xmin:xmax, :]
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.resize(img, [64, 64], interpolation = cv2.INTER_AREA)
+    return img.flatten()
 
 class DummyOpenCVImport:
     def __getattribute__(self, name):
