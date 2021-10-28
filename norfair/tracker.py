@@ -166,7 +166,7 @@ class Tracker:
                         distance_list.append(dist)
 
                     min_distance = np.min(distance_list)
-                    if min_distance < 2*self.distance_threshold:
+                    if min_distance < self.distance_threshold:
                         # [Potential] matched detection which has the smallest distance
                         matched_detection = detections[np.argmin(distance_list)]
                         density = pdist(matched_detection.points).mean()
