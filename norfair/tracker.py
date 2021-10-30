@@ -6,11 +6,8 @@ import cv2
 from numpy.core.fromnumeric import mean
 from rich import print
 
-from .utils import validate_points, crop_resize
+from .utils import validate_points, crop_resize, build_model
 from .filter import FilterSetup
-
-from sklearn.linear_model import SGDClassifier, LogisticRegression
-from sklearn.preprocessing import StandardScaler
 
 from scipy.spatial.distance import pdist
 
@@ -34,7 +31,7 @@ class Tracker:
         self.filter_setup = filter_setup
         self.tracked_obj_img_list = []
         self.non_tracked_obj_img_list = []
-        self.clf = SGDClassifier()
+        self.clf = build_model()
         self.density = []
         if past_detections_length >= 0:
             self.past_detections_length = past_detections_length
@@ -147,13 +144,12 @@ class Tracker:
                 # First try use the SGD model
                 X_train = np.vstack((self.tracked_obj_img_list, self.non_tracked_obj_img_list))
                 y_train = np.hstack(([0]*len(self.tracked_obj_img_list), [1]*len(self.non_tracked_obj_img_list)))
-                scaler = StandardScaler()
-                X_train_scaled = scaler.fit_transform(X_train)
-                self.clf.fit(X_train_scaled, y_train)
+
+                self.clf.fit(X_train, y_train, epochs=10, verbose=0)
                 self.tracked_obj_img_list = self.tracked_obj_img_list[-1:]
                 self.non_tracked_obj_img_list = self.non_tracked_obj_img_list[-1:]
 
-                predict_vals = self.clf.predict([crop_resize(frame, detection.points) for detection in detections])
+                predict_vals = self.clf.predict(np.array([crop_resize(frame, detection.points) for detection in detections]))
                 if 0 in predict_vals: # match
 
                     matched_object = objects[0]
@@ -166,7 +162,7 @@ class Tracker:
                         distance_list.append(dist)
 
                     min_distance = np.min(distance_list)
-                    if min_distance < self.distance_threshold:
+                    if min_distance < 3*self.distance_threshold:
                         # [Potential] matched detection which has the smallest distance
                         matched_detection = detections[np.argmin(distance_list)]
                         density = pdist(matched_detection.points).mean()
