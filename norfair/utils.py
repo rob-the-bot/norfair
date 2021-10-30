@@ -6,7 +6,12 @@ import cv2
 from rich import print
 from rich.console import Console
 from rich.table import Table
-
+# Importing the Keras libraries and packages
+from keras.models import Sequential
+from keras.layers import Conv2D
+from keras.layers import MaxPooling2D
+from keras.layers import Flatten
+from keras.layers import Dense
 
 def validate_points(points: np.array) -> np.array:
     # If the user is tracking only a single point, reformat it slightly.
@@ -92,7 +97,29 @@ def crop_resize(frame, points):
     img = frame[ymin:ymax, xmin:xmax, :]
     # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, [64, 64], interpolation = cv2.INTER_AREA)
-    return img.flatten()
+    return img#.flatten()
+
+
+def build_model():
+    # Initialising the CNN
+    model = Sequential()
+    # Step 1 - Convolution
+    model.add(Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
+    # Step 2 - Pooling
+    model.add(MaxPooling2D(pool_size = (2, 2)))
+    # Adding a second convolutional layer
+    model.add(Conv2D(32, (3, 3), activation = 'relu'))
+    model.add(MaxPooling2D(pool_size = (2, 2)))
+    # Step 3 - Flattening
+    model.add(Flatten())
+    # Step 4 - Full connection
+    model.add(Dense(units = 128, activation = 'relu'))
+    model.add(Dense(units = 1, activation = 'sigmoid'))
+    # Compiling the CNN
+    model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+    return model
+
 
 class DummyOpenCVImport:
     def __getattribute__(self, name):
