@@ -162,18 +162,14 @@ class Tracker:
                         distance_list.append(dist)
 
                     min_distance = np.min(distance_list)
-                    if min_distance < 3*self.distance_threshold:
-                        # [Potential] matched detection which has the smallest distance
-                        matched_detection = detections[np.argmin(distance_list)]
-                        density = pdist(matched_detection.points).mean()
-                        
-                        mean_tmp = np.mean(self.density)
-                        std_tmp = np.std(self.density)
-                        # import matplotlib.pyplot as plt
-                        # plt.figure()
-                        # plt.hist(self.density)
-                        # plt.show()
-                        if np.abs((density-mean_tmp)/std_tmp) < 1: # density must agree!!!
+                    # [Potential] matched detection which has the smallest distance
+                    matched_detection = detections[np.argmin(distance_list)]
+                    density = pdist(matched_detection.points).mean()
+                    
+                    mean_tmp = np.mean(self.density)
+                    std_tmp = np.std(self.density)
+                    # distance and density metric must agree!!!
+                    if (min_distance < 3*self.distance_threshold) and (np.abs((density-mean_tmp)/std_tmp) < 1):
                             self.density.append(density)
                             matched_object.hit(matched_detection, period=self.period)
                             matched_object.last_distance = self.distance_function(detection, matched_object)
