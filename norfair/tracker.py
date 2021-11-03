@@ -2,7 +2,6 @@ import math
 from typing import Callable, List, Optional, Sequence
 
 import numpy as np
-import cv2
 from numpy.core.fromnumeric import mean
 from rich import print
 
@@ -33,6 +32,7 @@ class Tracker:
         self.non_tracked_obj_img_list = []
         self.clf = build_model()
         self.density = []
+        self.missed_frames = []
         if past_detections_length >= 0:
             self.past_detections_length = past_detections_length
         else:
@@ -57,7 +57,7 @@ class Tracker:
         self.point_transience = point_transience
         TrackedObject.count = 0
 
-    def update(self, detections: Optional[List["Detection"]] = None, period: int = 1, frame=None):
+    def update(self, detections: Optional[List["Detection"]] = None, period: int = 1, frame=None, frame_num=None):
         self.period = period
 
         # Update tracker
@@ -66,7 +66,7 @@ class Tracker:
 
         # Update initialized tracked objects with detections
         unmatched_detections = self.update_objects_in_place(
-            [o for o in self.tracked_objects if not o.is_initializing], detections, frame
+            [o for o in self.tracked_objects if not o.is_initializing], detections, frame, frame_num
         )
 
         return [p for p in self.tracked_objects if not p.is_initializing]
@@ -76,6 +76,7 @@ class Tracker:
         objects: Sequence["TrackedObject"],
         detections: Optional[List["Detection"]],
         frame,
+        frame_num,
     ):
         if detections is not None and len(detections) > 0:
             distance_matrix = np.ones((len(detections), len(objects)), dtype=np.float32)
@@ -182,6 +183,7 @@ class Tracker:
 
                             matched_object.last_distance = self.distance_function(detection, matched_object)
                 else: # no match from our classifier, do zero-order hold
+                    self.missed_frames.append(frame_num)
                     for matched_object in objects:
                         points = matched_object.last_detection.points
                         detection = Detection(points, matched_object.last_detection.scores)
