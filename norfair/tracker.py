@@ -7,8 +7,9 @@ from rich import print
 
 from .utils import validate_points, crop_resize, build_model
 from .filter import FilterSetup
-
+import cv2
 from scipy.spatial.distance import pdist
+from PIL import Image
 
 class Tracker:
     def __init__(
@@ -135,14 +136,17 @@ class Tracker:
                         matched_object.last_distance = match_distance
 
                         # add img to list (for training)
-                        self.tracked_obj_img_list.append(crop_resize(frame, matched_object.estimate))
-
+                        face = crop_resize(frame, matched_detection.points)
+                        face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                        Image.fromarray(face).save(f"C:/temp/tmp/0_{frame_num}.png")
+                        
+                        self.tracked_obj_img_list.append(face)
                         self.density.append(pdist(matched_detection.points).mean())
                     else:
                         unmatched_detections.append(matched_detection)
             else:
                 # when no match with detections
-                # First try use the SGD model
+                # First try use the CNN model
                 X_train = np.vstack((self.tracked_obj_img_list, self.non_tracked_obj_img_list))
                 y_train = np.hstack(([0]*len(self.tracked_obj_img_list), [1]*len(self.non_tracked_obj_img_list)))
 
@@ -150,9 +154,9 @@ class Tracker:
                 self.tracked_obj_img_list = self.tracked_obj_img_list[-1:]
                 self.non_tracked_obj_img_list = self.non_tracked_obj_img_list[-1:]
 
-                predict_vals = self.clf.predict(np.array([crop_resize(frame, detection.points) for detection in detections]))
-                if 0 in predict_vals: # match
-
+                predict_vals = self.clf(np.array([crop_resize(frame, detection.points) for detection in detections]), training=False)
+                predict_vals = np.array(predict_vals)
+                if predict_vals.min() < 0.5: # match
                     matched_object = objects[0]
                     distance_list = []
                     for i, detection in enumerate(detections):
@@ -165,15 +169,21 @@ class Tracker:
                     min_distance = np.min(distance_list)
                     # [Potential] matched detection which has the smallest distance
                     matched_detection = detections[np.argmin(distance_list)]
+                    if predict_vals.min() == 0:
+                        print("MATCHED!")
+                        face = crop_resize(frame, matched_detection.points)
+                        face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                        Image.fromarray(face).save(f"C:/temp/tmp/matched_{frame_num}.png")
+
                     density = pdist(matched_detection.points).mean()
                     
                     mean_tmp = np.mean(self.density)
                     std_tmp = np.std(self.density)
                     # distance and density metric must agree!!!
-                    if (min_distance < 3*self.distance_threshold) and (np.abs((density-mean_tmp)/std_tmp) < 1):
-                            self.density.append(density)
-                            matched_object.hit(matched_detection, period=self.period)
-                            matched_object.last_distance = self.distance_function(detection, matched_object)
+                    if (min_distance < 3*self.distance_threshold): # and (np.abs((density-mean_tmp)/std_tmp) < 1):
+                        self.density.append(density)
+                        matched_object.hit(matched_detection, period=self.period)
+                        matched_object.last_distance = self.distance_function(detection, matched_object)
 
                     else: # no match from our classifier, do zero-order hold
                         for matched_object in objects:
@@ -195,7 +205,11 @@ class Tracker:
             unmatched_detections = []
 
         for unmatched_detection in unmatched_detections:
-            self.non_tracked_obj_img_list.append(crop_resize(frame, unmatched_detection.points))
+            face = crop_resize(frame, unmatched_detection.points)
+            face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+            Image.fromarray(face).save(f"C:/temp/tmp/1_{frame_num}.png")
+
+            self.non_tracked_obj_img_list.append(face)
         return unmatched_detections
 
     def match_dets_and_objs(self, distance_matrix: np.array):
