@@ -13,6 +13,88 @@ import numpy as np
 from .utils import validate_points
 
 
+class Color:
+    green = (0, 128, 0)
+    white = (255, 255, 255)
+    olive = (0, 128, 128)
+    black = (0, 0, 0)
+    navy = (128, 0, 0)
+    red = (0, 0, 255)
+    maroon = (0, 0, 128)
+    grey = (128, 128, 128)
+    purple = (128, 0, 128)
+    yellow = (0, 255, 255)
+    lime = (0, 255, 0)
+    fuchsia = (255, 0, 255)
+    aqua = (255, 255, 0)
+    blue = (255, 0, 0)
+    teal = (128, 128, 0)
+    silver = (192, 192, 192)
+    cerise = (99, 49, 222)
+    amaranth = (104, 43, 159)
+    orange = (0, 165, 255)
+    brown = (42, 42, 165)
+
+    @staticmethod
+    def random(obj_id: int) -> Tuple[int, int, int]:
+        color_list = [
+            c
+            for c in Color.__dict__.keys()
+            if c[:2] != "__"
+            and c not in ("random", "red", "white", "grey", "black", "silver")
+        ]
+        return getattr(Color, color_list[obj_id % len(color_list)])
+
+
+connections = [
+    (0, 1, Color.cerise),
+    (1, 8, Color.red),
+    (8, 9, Color.green),
+    (8, 12, Color.aqua),
+    (0, 15, Color.cerise),
+    (0, 16, Color.purple),
+    (15, 17, Color.amaranth),
+    (16, 18, Color.blue),
+    (1, 2, Color.orange),
+    (2, 3, Color.brown),
+    (3, 4, Color.yellow),
+    (1, 5, Color.lime),
+    (5, 6, Color.olive),
+    (6, 7, Color.green),
+]
+
+
+points_color = [
+    Color.cerise,
+    Color.red,
+    Color.orange,
+    Color.brown,
+    Color.yellow,
+    Color.olive,
+    Color.lime,
+    Color.green,
+    Color.red,
+    Color.lime,
+    Color.teal,
+    Color.aqua,
+    Color.aqua,
+    Color.blue,
+    Color.blue,
+    Color.amaranth,
+    Color.purple,
+    Color.amaranth,
+    Color.blue,
+    Color.blue,
+    Color.blue,
+    Color.blue,
+    Color.aqua,
+    Color.aqua,
+    Color.aqua,
+]
+
+alive_connections = [False] * len(connections)
+
+
 def draw_points(
     frame: np.array,
     detections: Sequence["Detection"],
@@ -50,6 +132,7 @@ def draw_tracked_objects(
     id_size: Optional[float] = None,
     id_thickness: Optional[int] = None,
     draw_points: bool = True,
+    draw_skeleton: bool = True,
 ):
     frame_scale = frame.shape[0] / 100
     if radius is None:
@@ -71,7 +154,9 @@ def draw_tracked_objects(
             id_color = color
 
         if draw_points:
-            for point, live in zip(obj.estimate, obj.live_points):
+            for point, live, point_color in zip(
+                obj.estimate, obj.live_points, points_color
+            ):
                 if live:
                     cv2.circle(
                         frame,
@@ -79,6 +164,23 @@ def draw_tracked_objects(
                         radius=radius,
                         color=point_color,
                         thickness=-1,
+                    )
+
+        if draw_skeleton:
+            for i, connection in enumerate(connections):
+                if obj.live_points[connection[0]] and obj.live_points[connection[1]]:
+                    alive_connections[i] = True
+                else:
+                    alive_connections[i] = False
+
+            for live, (id1, id2, color) in zip(alive_connections, connections):
+                if live:
+                    cv2.line(
+                        frame,
+                        tuple(obj.estimate[id1].round().astype(int)),
+                        tuple(obj.estimate[id2].round().astype(int)),
+                        color,
+                        2,
                     )
 
         if id_size > 0:
@@ -272,32 +374,3 @@ def draw_tracked_boxes(
                 cv2.LINE_AA,
             )
     return frame
-
-
-class Color:
-    green = (0, 128, 0)
-    white = (255, 255, 255)
-    olive = (0, 128, 128)
-    black = (0, 0, 0)
-    navy = (128, 0, 0)
-    red = (0, 0, 255)
-    maroon = (0, 0, 128)
-    grey = (128, 128, 128)
-    purple = (128, 0, 128)
-    yellow = (0, 255, 255)
-    lime = (0, 255, 0)
-    fuchsia = (255, 0, 255)
-    aqua = (255, 255, 0)
-    blue = (255, 0, 0)
-    teal = (128, 128, 0)
-    silver = (192, 192, 192)
-
-    @staticmethod
-    def random(obj_id: int) -> Tuple[int, int, int]:
-        color_list = [
-            c
-            for c in Color.__dict__.keys()
-            if c[:2] != "__"
-            and c not in ("random", "red", "white", "grey", "black", "silver")
-        ]
-        return getattr(Color, color_list[obj_id % len(color_list)])
