@@ -89,7 +89,7 @@ def bounding_box(points):
 
 
 def crop_resize(frame, points):
-    xmin, ymin, xmax, ymax = bounding_box(points)
+    xmin, ymin, xmax, ymax = bounding_box(points.round().astype(int))
     if ymin==ymax:
         ymax+=1
     if xmin==xmax:
