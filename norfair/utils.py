@@ -7,11 +7,12 @@ from rich import print
 from rich.console import Console
 from rich.table import Table
 # Importing the Keras libraries and packages
-from keras.models import Sequential
-from keras.layers import Conv2D
-from keras.layers import MaxPooling2D
-from keras.layers import Flatten
-from keras.layers import Dense
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers, models
+from tensorflow.keras.applications import EfficientNetB0
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 
 def validate_points(points: np.array) -> np.array:
     # If the user is tracking only a single point, reformat it slightly.
