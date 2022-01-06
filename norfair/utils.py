@@ -101,7 +101,49 @@ def crop_resize(frame, points):
     return img#.flatten()
 
 
-def build_model():
+def build_model(IMG_SIZE: int, NUM_CLASSES: int, scratch=False):
+    if scratch:
+        """
+        Build an EfficientNetB0 with NUM_CLASSES output classes, that is initialized from scratch
+        """
+        weights=None
+    else:
+        """
+        Transfer learning from pre-trained weights
+        Here we initialize the model with pre-trained ImageNet weights, and we fine-tune it on our own dataset.
+        """
+        weights="imagenet"
+        
+    inputs = layers.Input(shape=(IMG_SIZE, IMG_SIZE, 3))
+    model = EfficientNetB0(include_top=False, weights=weights, input_tensor=inputs, classes=NUM_CLASSES)
+
+    # Rebuild top
+    x = layers.GlobalAveragePooling2D(name="avg_pool")(model.output)
+    x = layers.BatchNormalization(name="batch_norm")(x)
+
+    top_dropout_rate = 0.2
+    x = layers.Dropout(top_dropout_rate, name="top_dropout")(x)
+    outputs = layers.Dense(NUM_CLASSES, activation="softmax", name="pred")(x)
+
+    # Compile
+    model = tf.keras.Model(inputs, outputs)
+    METRICS = [
+        keras.metrics.TruePositives(name="tp"),
+        keras.metrics.FalsePositives(name="fp"),
+        keras.metrics.TrueNegatives(name="tn"),
+        keras.metrics.FalseNegatives(name="fn"),
+        keras.metrics.BinaryAccuracy(name="accuracy"),
+        keras.metrics.Precision(name="precision"),
+        keras.metrics.Recall(name="recall"),
+        keras.metrics.AUC(name="auc"),
+        keras.metrics.AUC(name="prc", curve="PR"),  # precision-recall curve
+    ]
+    model.compile(optimizer="adam", loss="binary_crossentropy", metrics=METRICS)
+    return model
+
+
+
+def build_model_simple():
     # Initialising the CNN
     model = Sequential()
     # Step 1 - Convolution
