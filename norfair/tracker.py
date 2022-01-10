@@ -175,6 +175,7 @@ class Tracker:
                                 self.density.append(density)
                                 matched_object.hit(d, period=self.period)
                                 matched_object.last_distance = self.distance_function(detection, matched_object)
+                                break
             
             if zero_order_hold:
                 unmatched_detections = []
