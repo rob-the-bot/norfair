@@ -14,6 +14,7 @@ from tensorflow.keras.applications import EfficientNetB0
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 import matplotlib.pyplot as plt
+from scipy.spatial.distance import pdist
 
 def validate_points(points: np.array) -> np.array:
     # If the user is tracking only a single point, reformat it slightly.
@@ -84,6 +85,11 @@ def bounding_box(points, height, width):
     xmax, ymax = points.max(axis=0)
 
     return max(xmin, 0), max(ymin, 0), min(xmax, width), min(ymax, height)
+
+
+def get_density(points):
+    points = points[~np.all(points == 0, axis=1)]
+    return pdist(points).mean()
 
 
 def crop_resize(frame, points):

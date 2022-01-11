@@ -5,10 +5,9 @@ import numpy as np
 from numpy.core.fromnumeric import mean
 from rich import print
 
-from .utils import validate_points, crop_resize, build_model
+from .utils import get_density, validate_points, crop_resize, build_model, get_density
 from .filter import FilterSetup
 import cv2
-from scipy.spatial.distance import pdist
 from PIL import Image
 from tensorflow.keras.utils import to_categorical
 
@@ -149,7 +148,7 @@ class Tracker:
                         # Image.fromarray(face).save(f"C:/temp/tmp/0_{frame_num}.png")
                         
                         self.tracked_obj_img_list.append(face)
-                        self.density.append(pdist(matched_detection.points).mean())
+                            self.density.append(get_density(matched_detection.points))
                     else:
                         unmatched_detections.append(matched_detection)
             else:
@@ -163,7 +162,7 @@ class Tracker:
                     detections = np.array(detections)[idx]
 
                     for dist, d in zip(distance_list, detections):
-                        density = pdist(d.points).mean()
+                        density = get_density(d.points)
 
                         N = min(len(self.density), 500)
                         mean_tmp = np.mean(self.density[-N:])
