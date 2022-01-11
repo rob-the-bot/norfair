@@ -142,8 +142,9 @@ class Tracker:
                         matched_object.last_distance = match_distance
 
                         # add img to list (for training)
-                        self.detected_points.append(matched_detection.points)
                         face = crop_resize(frame, matched_detection.points)
+                        if face.any():
+                        self.detected_points.append(matched_detection.points)
                         face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
                         # Image.fromarray(face).save(f"C:/temp/tmp/0_{frame_num}.png")
                         
@@ -170,7 +171,9 @@ class Tracker:
                         # distance and density metric must agree!!!
                         if dist < 2*self.distance_threshold and (np.abs((density-mean_tmp)/std_tmp) < 1):
                             # Run CNN classifier on this object
-                            X_test = np.array(crop_resize(frame, d.points))[None, ...]
+                            face = crop_resize(frame, d.points)
+                            if face.any():
+                                X_test = np.array(face)[None, ...]
                             y_test = self.clf.predict(X_test)
                             if y_test[0][0] > 0.8:
                                 zero_order_hold = False # matched, no need for 0th hold
