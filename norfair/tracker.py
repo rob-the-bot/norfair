@@ -143,11 +143,11 @@ class Tracker:
                         # add img to list (for training)
                         face = crop_resize(frame, matched_detection.points)
                         if face.any():
-                        self.detected_points.append(matched_detection.points)
-                        face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
-                        # Image.fromarray(face).save(f"C:/temp/tmp/0_{frame_num}.png")
-                        
-                        self.tracked_obj_img_list.append(face)
+                            self.detected_points.append(matched_detection.points)
+                            face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+                            # Image.fromarray(face).save(f"C:/temp/tmp/0_{frame_num}.png")
+                            
+                            self.tracked_obj_img_list.append(face)
                             self.density.append(get_density(matched_detection.points))
                     else:
                         unmatched_detections.append(matched_detection)
@@ -164,22 +164,25 @@ class Tracker:
                     for dist, d in zip(distance_list, detections):
                         density = get_density(d.points)
 
-                        N = min(len(self.density), 500)
-                        mean_tmp = np.mean(self.density[-N:])
-                        std_tmp = np.std(self.density[-N:])
+                        zscore = 0
+                        frames_window = 500
+                        if len(self.density) > frames_window:
+                            mean_tmp = np.mean(self.density[-frames_window:])
+                            std_tmp = np.std(self.density[-frames_window:])
+                            zscore = np.abs(density-mean_tmp)/std_tmp
                         # distance and density metric must agree!!!
-                        if dist < 2*self.distance_threshold and (np.abs((density-mean_tmp)/std_tmp) < 1):
+                        if dist < 2*self.distance_threshold and zscore < 2:
                             # Run CNN classifier on this object
                             face = crop_resize(frame, d.points)
                             if face.any():
                                 X_test = np.array(face)[None, ...]
-                            y_test = self.clf.predict(X_test)
-                            if y_test[0][0] > 0.8:
-                                zero_order_hold = False # matched, no need for 0th hold
-                                self.density.append(density)
-                                matched_object.hit(d, period=self.period)
-                                matched_object.last_distance = self.distance_function(detection, matched_object)
-                                break
+                                y_test = self.clf.predict(X_test)
+                                if y_test[0][0] > 0.8:
+                                    zero_order_hold = False # matched, no need for 0th hold
+                                    self.density.append(density)
+                                    matched_object.hit(d, period=self.period)
+                                    matched_object.last_distance = self.distance_function(detection, matched_object)
+                                    break
             
             if zero_order_hold:
                 unmatched_detections = []
