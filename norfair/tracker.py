@@ -163,8 +163,10 @@ class Tracker:
 
                     for dist, d in zip(distance_list, detections):
                         density = pdist(d.points).mean()
-                        mean_tmp = np.mean(self.density)
-                        std_tmp = np.std(self.density)
+
+                        N = min(len(self.density), 500)
+                        mean_tmp = np.mean(self.density[-N:])
+                        std_tmp = np.std(self.density[-N:])
                         # distance and density metric must agree!!!
                         if dist < 2*self.distance_threshold and (np.abs((density-mean_tmp)/std_tmp) < 1):
                             # Run CNN classifier on this object
