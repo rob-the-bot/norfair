@@ -166,7 +166,7 @@ class Tracker:
                         mean_tmp = np.mean(self.density)
                         std_tmp = np.std(self.density)
                         # distance and density metric must agree!!!
-                        if dist < 3*self.distance_threshold and (np.abs((density-mean_tmp)/std_tmp) < 1):
+                        if dist < 2*self.distance_threshold and (np.abs((density-mean_tmp)/std_tmp) < 1):
                             # Run CNN classifier on this object
                             X_test = np.array(crop_resize(frame, d.points))[None, ...]
                             y_test = self.clf.predict(X_test)
