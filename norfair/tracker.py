@@ -153,6 +153,7 @@ class Tracker:
                     else:
                         unmatched_detections.append(matched_detection)
             else:
+                unmatched_detections = detections
                 if self.clf:
                     matched_object = objects[0]
                     distance_list = [self.distance_function(d, matched_object) for d in detections]
