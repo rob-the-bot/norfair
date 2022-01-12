@@ -81,9 +81,9 @@ class Tracker:
         frame,
         frame_num,
     ):
-        zero_order_hold=False
+        zero_order_hold=True
         unmatched_detections = []
-
+        
         if detections is not None and len(detections) > 0:
             distance_matrix = np.ones((len(detections), len(objects)), dtype=np.float32)
             distance_matrix *= self.distance_threshold + 1
@@ -137,6 +137,7 @@ class Tracker:
                     matched_detection = detections[match_det_idx]
                     matched_object = objects[match_obj_idx]
                     if match_distance < self.distance_threshold:
+                        zero_order_hold = False
                         matched_object.hit(matched_detection, period=self.period)
                         matched_object.last_distance = match_distance
 
@@ -152,8 +153,6 @@ class Tracker:
                     else:
                         unmatched_detections.append(matched_detection)
             else:
-                zero_order_hold = True # no match from tracking, default to doing zero-order hold
-
                 if self.clf:
                     matched_object = objects[0]
                     distance_list = [self.distance_function(d, matched_object) for d in detections]
