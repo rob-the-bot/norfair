@@ -183,18 +183,18 @@ class Tracker:
                                     matched_object.hit(d, period=self.period)
                                     matched_object.last_distance = self.distance_function(detection, matched_object)
                                     break
-            
-            if zero_order_hold:
-                unmatched_detections = []
-                self.missed_frames.append(frame_num)
-                for matched_object in objects:
-                    points = matched_object.last_detection.points
-                    detection = Detection(points, matched_object.last_detection.scores)
-                    matched_object.hit(detection, period=self.period)
-
-                    matched_object.last_distance = self.distance_function(detection, matched_object)
         else:
             unmatched_detections = []
+
+        if zero_order_hold:
+            unmatched_detections = []
+            self.missed_frames.append(frame_num)
+            for matched_object in objects:
+                points = matched_object.last_detection.points
+                detection = Detection(points, matched_object.last_detection.scores)
+                matched_object.hit(detection, period=self.period)
+
+                matched_object.last_distance = self.distance_function(detection, matched_object)
             
         return unmatched_detections
 
