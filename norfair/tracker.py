@@ -5,11 +5,10 @@ import numpy as np
 from numpy.core.fromnumeric import mean
 from rich import print
 
-from .utils import get_density, validate_points, crop_resize, build_model, get_density
+from .utils import get_density, validate_points, crop_resize, get_density
 from .filter import FilterSetup
 import cv2
 from PIL import Image
-from tensorflow.keras.utils import to_categorical
 
 class Tracker:
     def __init__(
