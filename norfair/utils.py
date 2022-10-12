@@ -108,7 +108,10 @@ def crop_resize(frame, points, whole: bool = False):
         points2[:, 1] -= 20 # add 20 pixel to the height for facial features
 
         points = np.vstack([points1, points2])
-
+    
+    random_img = np.random.rand(64, 64, 3) * 255
+    if not points.any():
+        return random_img
     xmin, ymin, xmax, ymax = bounding_box(points, frame.shape[1], frame.shape[0])
     if ymin==ymax:
         ymax+=1
@@ -119,8 +122,9 @@ def crop_resize(frame, points, whole: bool = False):
     if img.any():
         img = cv2.resize(img, [64, 64], interpolation = cv2.INTER_AREA)
         # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
-    return img#.flatten()
+        return img
+    else:
+        return random_img
 
 
 def build_model(IMG_SIZE: int, NUM_CLASSES: int, scratch=False):
