@@ -10,7 +10,7 @@ from rich.table import Table
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers, models
-from tensorflow.keras.applications import EfficientNetB0
+from tensorflow.keras.applications import EfficientNetV2B0
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 import matplotlib.pyplot as plt
@@ -135,7 +135,7 @@ def build_model(IMG_SIZE: int, NUM_CLASSES: int, scratch=False):
         weights="imagenet"
         
     inputs = layers.Input(shape=(IMG_SIZE, IMG_SIZE, 3))
-    model = EfficientNetB0(include_top=False, weights=weights, input_tensor=inputs, classes=NUM_CLASSES)
+    model = EfficientNetV2B0(include_top=False, weights=weights, input_tensor=inputs, classes=NUM_CLASSES)
 
     # Rebuild top
     x = layers.GlobalAveragePooling2D(name="avg_pool")(model.output)
