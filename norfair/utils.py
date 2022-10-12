@@ -92,21 +92,23 @@ def get_density(points):
     return pdist(points).mean()
 
 
-def crop_resize(frame, points):
+def crop_resize(frame, points, whole: bool = False):
     points = points.round().astype(int)
 
-    
-    # points1 = points[[0, 1, 2, 5]] # shoulder and nose
-    # # remove rows having all zeroes
-    # points1 = points1[~np.all(points1 == 0, axis=1)]
+    if whole:
+        points = points[~np.all(points == 0, axis=1)]
+    else:
+        points1 = points[[0, 1, 2, 5]] # shoulder and nose
+        # remove rows having all zeroes
+        points1 = points1[~np.all(points1 == 0, axis=1)]
 
-    # points2 = points[15:19] # the rest facial features
-    # # remove rows having all zeroes
-    # points2 = points2[~np.all(points2 == 0, axis=1)]
-    # points2[:, 1] -= 20 # add 20 pixel to the height for facial features
+        points2 = points[15:19] # the rest facial features
+        # remove rows having all zeroes
+        points2 = points2[~np.all(points2 == 0, axis=1)]
+        points2[:, 1] -= 20 # add 20 pixel to the height for facial features
 
-    # points = np.vstack([points1, points2])
-    points = points[~np.all(points == 0, axis=1)]
+        points = np.vstack([points1, points2])
+
     xmin, ymin, xmax, ymax = bounding_box(points, frame.shape[1], frame.shape[0])
     if ymin==ymax:
         ymax+=1
