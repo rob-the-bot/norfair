@@ -112,19 +112,15 @@ def crop_resize(frame, points, whole: bool = False):
     random_img = np.random.rand(64, 64, 3) * 255
     if not points.any():
         return random_img
+
     xmin, ymin, xmax, ymax = bounding_box(points, frame.shape[1], frame.shape[0])
-    if ymin==ymax:
-        ymax+=1
-    if xmin==xmax:
-        xmax+=1
+    if (ymax - ymin < 10) or (xmax - xmin < 10):
+        return random_img
 
     img = frame[ymin:ymax, xmin:xmax, :]
-    if img.any():
-        img = cv2.resize(img, [64, 64], interpolation = cv2.INTER_AREA)
-        # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        return img
-    else:
-        return random_img
+    img = cv2.resize(img, [64, 64], interpolation = cv2.INTER_AREA)
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    return img
 
 
 def build_model(IMG_SIZE: int, NUM_CLASSES: int, scratch=False):
