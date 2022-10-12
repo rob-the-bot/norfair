@@ -109,13 +109,12 @@ def crop_resize(frame, points, whole: bool = False):
 
         points = np.vstack([points1, points2])
     
-    random_img = np.random.rand(64, 64, 3) * 255
     if not points.any():
-        return random_img
+        return points
 
     xmin, ymin, xmax, ymax = bounding_box(points, frame.shape[1], frame.shape[0])
     if (ymax - ymin < 10) or (xmax - xmin < 10):
-        return random_img
+        return np.array([])
 
     img = frame[ymin:ymax, xmin:xmax, :]
     img = cv2.resize(img, [64, 64], interpolation = cv2.INTER_AREA)
