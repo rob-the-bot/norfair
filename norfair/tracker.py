@@ -156,12 +156,12 @@ class Tracker:
                 unmatched_detections = detections
                 if self.cnn_score:
                     matched_object = objects[0]
-                    cnn_score_tmp = self.cnn_score[frame_num].copy()
+                    cnn_score_tmp = np.array(self.cnn_score[frame_num])
                     idx = np.argsort(-cnn_score_tmp) # sort descending based on cnn score
-                    distance_list = np.array(distance_list)[idx]
-                    detections = np.array(detections)[idx]
-                    cnn_score_tmp = cnn_score_tmp[idx]
 
+                    cnn_score_tmp = cnn_score_tmp[idx]
+                    detections = np.array(detections)[idx]
+                    distance_list = [self.distance_function(d, matched_object) for d in detections]
                     for i, (dist, d) in enumerate(zip(distance_list, detections)):
                         density = get_density(d.points)
 
