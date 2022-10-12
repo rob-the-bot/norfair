@@ -163,18 +163,10 @@ class Tracker:
                     detections = np.array(detections)[idx]
                     distance_list = [self.distance_function(d, matched_object) for d in detections]
                     for i, (dist, d) in enumerate(zip(distance_list, detections)):
-                        density = get_density(d.points)
-
-                        zscore = 0
-                        frames_window = 500
-                        if len(self.density) > frames_window:
-                            mean_tmp = np.mean(self.density[-frames_window:])
-                            std_tmp = np.std(self.density[-frames_window:])
-                            zscore = np.abs(density-mean_tmp)/std_tmp
                         # distance and CNN score metric must agree!!!
                         if dist < 3 * self.distance_threshold and cnn_score_tmp[i] > 0.8:
                             zero_order_hold = False # matched, no need for 0th hold
-                            self.density.append(density)
+                            self.density.append(get_density(d.points))
                             matched_object.hit(d, period=self.period)
                             matched_object.last_distance = self.distance_function(detection, matched_object)
                             break
