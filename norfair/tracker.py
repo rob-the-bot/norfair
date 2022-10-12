@@ -23,7 +23,7 @@ class Tracker:
         point_transience: int = 4,
         filter_setup: "FilterSetup" = FilterSetup(),
         past_detections_length: int = 4,
-        model=None,
+        cnn_score=None,
     ):
         self.tracked_objects: Sequence["TrackedObject"] = []
         self.distance_function = distance_function
@@ -32,7 +32,7 @@ class Tracker:
         self.filter_setup = filter_setup
         self.tracked_obj_img_list = []
         self.non_tracked_obj_img_list = []
-        self.clf = model
+        self.cnn_score = cnn_score
         self.detected_points = []
         self.density = []
         self.missed_frames = []
@@ -154,14 +154,15 @@ class Tracker:
                         unmatched_detections.append(matched_detection)
             else:
                 unmatched_detections = detections
-                if self.clf:
+                if self.cnn_score:
                     matched_object = objects[0]
-                    distance_list = [self.distance_function(d, matched_object) for d in detections]
-                    idx = np.argsort(distance_list)
+                    cnn_score_tmp = self.cnn_score[frame_num].copy()
+                    idx = np.argsort(-cnn_score_tmp) # sort descending based on cnn score
                     distance_list = np.array(distance_list)[idx]
                     detections = np.array(detections)[idx]
+                    cnn_score_tmp = cnn_score_tmp[idx]
 
-                    for dist, d in zip(distance_list, detections):
+                    for i, (dist, d) in enumerate(zip(distance_list, detections)):
                         density = get_density(d.points)
 
                         zscore = 0
@@ -170,19 +171,13 @@ class Tracker:
                             mean_tmp = np.mean(self.density[-frames_window:])
                             std_tmp = np.std(self.density[-frames_window:])
                             zscore = np.abs(density-mean_tmp)/std_tmp
-                        # distance and density metric must agree!!!
-                        if dist < 2*self.distance_threshold and zscore < 2:
-                            # Run CNN classifier on this object
-                            face = crop_resize(frame, d.points)
-                            if face.any():
-                                X_test = np.array(face)[None, ...]
-                                y_test = self.clf.predict(X_test)
-                                if y_test[0][0] > 0.8:
-                                    zero_order_hold = False # matched, no need for 0th hold
-                                    self.density.append(density)
-                                    matched_object.hit(d, period=self.period)
-                                    matched_object.last_distance = self.distance_function(detection, matched_object)
-                                    break
+                        # distance and CNN score metric must agree!!!
+                        if dist < 3 * self.distance_threshold and cnn_score_tmp[i] > 0.8:
+                            zero_order_hold = False # matched, no need for 0th hold
+                            self.density.append(density)
+                            matched_object.hit(d, period=self.period)
+                            matched_object.last_distance = self.distance_function(detection, matched_object)
+                            break
         else:
             unmatched_detections = []
 
