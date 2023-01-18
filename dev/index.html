@@ -335,6 +335,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ros-integration" class="md-nav__link">
+    ROS integration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#benchmarking-and-profiling" class="md-nav__link">
     Benchmarking and profiling
   </a>
@@ -632,6 +639,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ros-integration" class="md-nav__link">
+    ROS integration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#benchmarking-and-profiling" class="md-nav__link">
     Benchmarking and profiling
   </a>
@@ -708,7 +722,7 @@
 
   <h1>Home</h1>
 
-<p><img alt="Norfair by Tryolabs logo" src="https://raw.githubusercontent.com/tryolabs/norfair/master/docs/img/logo.svg" /></p>
+<p><img alt="Norfair by Tryolabs logo" src="https://raw.githubusercontent.com/tryolabs/norfair/master/docs/img/banner.png" /></p>
 <p><a href="https://huggingface.co/spaces/tryolabs/norfair-demo"><img alt="Hugging Face Spaces" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue" /></a>
 <a href="https://colab.research.google.com/github/tryolabs/norfair/blob/master/demos/colab/colab_demo.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p><img alt="PyPI - Python Versions" src="https://img.shields.io/pypi/pyversions/norfair" />
@@ -754,20 +768,21 @@
 </ul>
 <p>Norfair is built, used and maintained by <a href="https://tryolabs.com">Tryolabs</a>.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p>Norfair currently supports Python 3.6+.</p>
+<p>Norfair currently supports Python 3.7+.</p>
 <p>For the minimal version, install as:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install norfair
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>norfair
 </code></pre></div></td></tr></table></div>
 <p>To make Norfair install the dependencies to support more features, install as:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install norfair<span class="o">[</span>video<span class="o">]</span>  <span class="c1"># Adds several video helper features running on OpenCV</span>
-pip install norfair<span class="o">[</span>metrics<span class="o">]</span>  <span class="c1"># Supports running MOT metrics evaluation</span>
-pip install norfair<span class="o">[</span>metrics,video<span class="o">]</span>  <span class="c1"># Everything included</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>norfair<span class="o">[</span>video<span class="o">]</span><span class="w">  </span><span class="c1"># Adds several video helper features running on OpenCV</span>
+pip<span class="w"> </span>install<span class="w"> </span>norfair<span class="o">[</span>metrics<span class="o">]</span><span class="w">  </span><span class="c1"># Supports running MOT metrics evaluation</span>
+pip<span class="w"> </span>install<span class="w"> </span>norfair<span class="o">[</span>metrics,video<span class="o">]</span><span class="w">  </span><span class="c1"># Everything included</span>
 </code></pre></div></td></tr></table></div>
 <p>If the needed dependencies are already present in the system, installing the minimal version of Norfair is enough for enabling the extra features. This is particularly useful for embedded devices, where installing compiled dependencies can be difficult, but they can sometimes come preinstalled with the system.</p>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">#</a></h2>
-<p><a href="https://tryolabs.github.io/norfair/">Official reference available here</a>.</p>
+<p><a href="https://tryolabs.github.io/norfair/latest/getting_started/">Getting started guide</a>.</p>
+<p><a href="https://tryolabs.github.io/norfair/latest/reference/">Official reference</a>.</p>
 <h2 id="examples-demos">Examples &amp; demos<a class="headerlink" href="#examples-demos" title="Permanent link">#</a></h2>
 <p><a href="https://huggingface.co/spaces/tryolabs/norfair-demo"><img alt="Hugging Face Spaces" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue" /></a>
 <a href="https://colab.research.google.com/github/tryolabs/norfair/blob/master/demos/colab/colab_demo.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
@@ -796,6 +811,9 @@ pip install norfair<span class="o">[</span>metrics,video<span class="o">]</span>
 <li><a href="https://github.com/tryolabs/norfair/tree/master/demos/3d_track">Track points in 3D</a>, using <a href="https://google.github.io/mediapipe/solutions/objectron.html">MediaPipe Objectron</a>.</li>
 <li><a href="https://github.com/tryolabs/norfair/tree/master/demos/sahi">Tracking of small objects</a>, using <a href="https://github.com/obss/sahi">SAHI: Slicing Aided Hyper Inference</a>.</li>
 </ol>
+<h3 id="ros-integration">ROS integration<a class="headerlink" href="#ros-integration" title="Permanent link">#</a></h3>
+<p>To make it even easier to use Norfair in robotics projects, we now offer a version that integrates with the Robotic Operating System (ROS).</p>
+<p>We present a <a href="https://github.com/tryolabs/norfair-ros">ROS package</a> and a <a href="https://github.com/tryolabs/norfair-ros-dev">fully functional environment</a> running on Docker to do the first steps with this package and start your first application easier.</p>
 <h3 id="benchmarking-and-profiling">Benchmarking and profiling<a class="headerlink" href="#benchmarking-and-profiling" title="Permanent link">#</a></h3>
 <ol>
 <li><a href="https://github.com/tryolabs/norfair/tree/master/demos/profiling">Kalman filter and distance function profiling</a> using <a href="https://github.com/NVIDIA-AI-IOT/trt_pose">TRT pose estimator</a>.</li>
@@ -875,7 +893,7 @@ pip install norfair<span class="o">[</span>metrics,video<span class="o">]</span>
 <thead>
 <tr>
 <th align="center">MOT17 Train</th>
-<th align="center">IDF1  IDP  IDR</th>
+<th align="center">IDF1 IDP IDR</th>
 <th align="center">Rcll</th>
 <th align="center">Prcn</th>
 <th align="center">MOTA MOTP</th>
@@ -944,7 +962,7 @@ pip install norfair<span class="o">[</span>metrics,video<span class="o">]</span>
 <thead>
 <tr>
 <th align="center">MOT20 Train</th>
-<th align="center">IDF1  IDP  IDR</th>
+<th align="center">IDF1 IDP IDR</th>
 <th align="center">Rcll</th>
 <th align="center">Prcn</th>
 <th align="center">MOTA MOTP</th>

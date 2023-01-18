@@ -383,22 +383,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#norfair.tracker.Tracker.update" class="md-nav__link">
-    update()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#norfair.tracker.Tracker.current_object_count" class="md-nav__link">
-    current_object_count()
+    current_object_count
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#norfair.tracker.Tracker.total_object_count" class="md-nav__link">
-    total_object_count()
+    total_object_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.Tracker.update" class="md-nav__link">
+    update()
   </a>
   
 </li>
@@ -429,6 +429,27 @@
   
     <nav class="md-nav" aria-label="TrackedObject">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.TrackedObject.estimate_velocity" class="md-nav__link">
+    estimate_velocity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.TrackedObject.estimate" class="md-nav__link">
+    estimate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.TrackedObject.get_estimate" class="md-nav__link">
+    get_estimate()
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#norfair.tracker.TrackedObject.hit" class="md-nav__link">
@@ -597,22 +618,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#norfair.tracker.Tracker.update" class="md-nav__link">
-    update()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#norfair.tracker.Tracker.current_object_count" class="md-nav__link">
-    current_object_count()
+    current_object_count
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#norfair.tracker.Tracker.total_object_count" class="md-nav__link">
-    total_object_count()
+    total_object_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.Tracker.update" class="md-nav__link">
+    update()
   </a>
   
 </li>
@@ -643,6 +664,27 @@
   
     <nav class="md-nav" aria-label="TrackedObject">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.TrackedObject.estimate_velocity" class="md-nav__link">
+    estimate_velocity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.TrackedObject.estimate" class="md-nav__link">
+    estimate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#norfair.tracker.TrackedObject.get_estimate" class="md-nav__link">
+    get_estimate()
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#norfair.tracker.TrackedObject.hit" class="md-nav__link">
@@ -1243,7 +1285,7 @@ If used, this argument (<code>reid_hit_counter_max</code>) defines how long an o
 <span class="normal">384</span>
 <span class="normal">385</span>
 <span class="normal">386</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Tracker</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The class in charge of performing the tracking of the detections produced by a detector.</span>
 
 <span class="sd">    Parameters</span>
@@ -1374,7 +1416,7 @@ If used, this argument (<code>reid_hit_counter_max</code>) defines how long an o
         <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">coord_transformations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CoordinatesTransformation</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;TrackedObject&quot;</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Process detections found in each frame.</span>
 
 <span class="sd">        The detections can be matched to previous tracked objects or new ones will be created</span>
@@ -1488,16 +1530,16 @@ If used, this argument (<code>reid_hit_counter_max</code>) defines how long an o
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">current_object_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Number of active TrackedObjects&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of active TrackedObjects&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_active_objects</span><span class="p">())</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">total_object_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Total number of TrackedObjects initialized in the by this Tracker&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Total number of TrackedObjects initialized in the by this Tracker&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj_factory</span><span class="o">.</span><span class="n">count</span>
 
     <span class="k">def</span> <span class="nf">get_active_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;TrackedObject&quot;</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get the list of active objects</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the list of active objects</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1578,7 +1620,7 @@ If used, this argument (<code>reid_hit_counter_max</code>) defines how long an o
         <span class="k">return</span> <span class="n">unmatched_candidates</span><span class="p">,</span> <span class="n">matched_objects</span><span class="p">,</span> <span class="n">unmatched_objects</span>
 
     <span class="k">def</span> <span class="nf">match_dets_and_objs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Matches detections with tracked_objects from a distance matrix</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Matches detections with tracked_objects from a distance matrix</span>
 
 <span class="sd">        I used to match by minimizing the global distances, but found several</span>
 <span class="sd">        cases in which this was not optimal. So now I just match by starting</span>
@@ -1623,6 +1665,48 @@ If used, this argument (<code>reid_hit_counter_max</code>) defines how long an o
 
 
 
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 class="doc doc-heading" id="norfair.tracker.Tracker.current_object_count">
+<code class="highlight language-python"><span class="n">current_object_count</span><span class="p">:</span> <span class="nb">int</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a class="headerlink" href="#norfair.tracker.Tracker.current_object_count" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Number of active TrackedObjects</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 class="doc doc-heading" id="norfair.tracker.Tracker.total_object_count">
+<code class="highlight language-python"><span class="n">total_object_count</span><span class="p">:</span> <span class="nb">int</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a class="headerlink" href="#norfair.tracker.Tracker.total_object_count" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Total number of TrackedObjects initialized in the by this Tracker</p>
+  </div>
+
+</div>
 
 
 
@@ -1835,7 +1919,7 @@ which is useful if the user is dynamically changing how many frames the detector
     <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">coord_transformations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CoordinatesTransformation</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;TrackedObject&quot;</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Process detections found in each frame.</span>
 
 <span class="sd">    The detections can be matched to previous tracked objects or new ones will be created</span>
@@ -1956,72 +2040,6 @@ which is useful if the user is dynamically changing how many frames the detector
 
 
 
-<h3 class="doc doc-heading" id="norfair.tracker.Tracker.current_object_count">
-<code class="highlight language-python"><span class="n">current_object_count</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-property"><code>property</code></small>
-  </span>
-
-<a class="headerlink" href="#norfair.tracker.Tracker.current_object_count" title="Permanent link">#</a></h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Number of active TrackedObjects</p>
-
-      <details class="quote">
-        <summary>Source code in <code>norfair/tracker.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
-<span class="k">def</span> <span class="nf">current_object_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Number of active TrackedObjects&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_active_objects</span><span class="p">())</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 class="doc doc-heading" id="norfair.tracker.Tracker.total_object_count">
-<code class="highlight language-python"><span class="n">total_object_count</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-property"><code>property</code></small>
-  </span>
-
-<a class="headerlink" href="#norfair.tracker.Tracker.total_object_count" title="Permanent link">#</a></h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Total number of TrackedObjects initialized in the by this Tracker</p>
-
-      <details class="quote">
-        <summary>Source code in <code>norfair/tracker.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span>
-<span class="normal">270</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
-<span class="k">def</span> <span class="nf">total_object_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Total number of TrackedObjects initialized in the by this Tracker&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj_factory</span><span class="o">.</span><span class="n">count</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
 <h3 class="doc doc-heading" id="norfair.tracker.Tracker.get_active_objects">
 <code class="highlight language-python"><span class="n">get_active_objects</span><span class="p">()</span></code>
 
@@ -2065,7 +2083,7 @@ which is useful if the user is dynamically changing how many frames the detector
 <span class="normal">282</span>
 <span class="normal">283</span>
 <span class="normal">284</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_active_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;TrackedObject&quot;</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Get the list of active objects</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the list of active objects</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -2141,7 +2159,7 @@ distance, which is what used to happen</p>
 <span class="normal">384</span>
 <span class="normal">385</span>
 <span class="normal">386</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">match_dets_and_objs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">distance_threshold</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Matches detections with tracked_objects from a distance matrix</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Matches detections with tracked_objects from a distance matrix</span>
 
 <span class="sd">    I used to match by minimizing the global distances, but found several</span>
 <span class="sd">    cases in which this was not optimal. So now I just match by starting</span>
@@ -2563,8 +2581,39 @@ which needs to reach a certain match rate to be converted into a full blown <cod
 <span class="normal">708</span>
 <span class="normal">709</span>
 <span class="normal">710</span>
-<span class="normal">711</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TrackedObject</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="normal">711</span>
+<span class="normal">712</span>
+<span class="normal">713</span>
+<span class="normal">714</span>
+<span class="normal">715</span>
+<span class="normal">716</span>
+<span class="normal">717</span>
+<span class="normal">718</span>
+<span class="normal">719</span>
+<span class="normal">720</span>
+<span class="normal">721</span>
+<span class="normal">722</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
+<span class="normal">730</span>
+<span class="normal">731</span>
+<span class="normal">732</span>
+<span class="normal">733</span>
+<span class="normal">734</span>
+<span class="normal">735</span>
+<span class="normal">736</span>
+<span class="normal">737</span>
+<span class="normal">738</span>
+<span class="normal">739</span>
+<span class="normal">740</span>
+<span class="normal">741</span>
+<span class="normal">742</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TrackedObject</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The objects returned by the tracker&#39;s `update` function on each iteration.</span>
 
 <span class="sd">    They represent the objects currently being tracked by the tracker.</span>
@@ -2689,15 +2738,46 @@ which needs to reach a certain match rate to be converted into a full blown <cod
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reid_hit_counter</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">reid_hit_counter</span> <span class="o">&gt;=</span> <span class="mi">0</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">estimate_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the velocity estimate of the object from the Kalman filter. This velocity is in the absolute coordinate system.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            An array of shape (self.num_points, self.dim_points) containing the velocity estimate of the object on each axis.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">dim_z</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim_points</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the position estimate of the object from the Kalman filter.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            An array of shape (self.num_points, self.dim_points) containing the position estimate of the object on each axis.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_estimate</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">absolute</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the position estimate of the object from the Kalman filter in an absolute or relative format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        absolute : bool, optional</span>
+<span class="sd">            If true the coordinates are returned in absolute format, by default False, by default False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            An array of shape (self.num_points, self.dim_points) containing the position estimate of the object on each axis.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            Alert if the coordinates are requested in absolute format but the tracker has no coordinate transformation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim_z</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim_points</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_to_rel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_to_rel</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">positions</span>
-
-    <span class="k">def</span> <span class="nf">get_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">absolute</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="n">positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim_z</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_to_rel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">absolute</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">positions</span>
@@ -2716,7 +2796,7 @@ which needs to reach a certain match rate to be converted into a full blown <cod
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_hit_counter</span> <span class="o">&gt;</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detection</span><span class="p">:</span> <span class="s2">&quot;Detection&quot;</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Update tracked object with a new detection</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update tracked object with a new detection</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2801,7 +2881,7 @@ which needs to reach a certain match rate to be converted into a full blown <cod
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_conditionally_add_to_past_detections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detection</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds detections into (and pops detections away) from `past_detections`</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds detections into (and pops detections away) from `past_detections`</span>
 
 <span class="sd">        It does so by keeping a fixed amount of past detections saved into each</span>
 <span class="sd">        TrackedObject, while maintaining them distributed uniformly through the object&#39;s</span>
@@ -2818,7 +2898,7 @@ which needs to reach a certain match rate to be converted into a full blown <cod
             <span class="bp">self</span><span class="o">.</span><span class="n">past_detections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detection</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracked_object</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Merge with a not yet initialized TrackedObject instance&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Merge with a not yet initialized TrackedObject instance&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reid_hit_counter</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hit_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_period</span> <span class="o">*</span> <span class="mi">2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point_hit_counter</span> <span class="o">=</span> <span class="n">tracked_object</span><span class="o">.</span><span class="n">point_hit_counter</span>
@@ -2854,7 +2934,228 @@ which needs to reach a certain match rate to be converted into a full blown <cod
 
 
 
+<div class="doc doc-object doc-attribute">
 
+
+
+<h3 class="doc doc-heading" id="norfair.tracker.TrackedObject.estimate_velocity">
+<code class="highlight language-python"><span class="n">estimate_velocity</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a class="headerlink" href="#norfair.tracker.TrackedObject.estimate_velocity" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the velocity estimate of the object from the Kalman filter. This velocity is in the absolute coordinate system.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>An array of shape (self.num_points, self.dim_points) containing the velocity estimate of the object on each axis.</p></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 class="doc doc-heading" id="norfair.tracker.TrackedObject.estimate">
+<code class="highlight language-python"><span class="n">estimate</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a class="headerlink" href="#norfair.tracker.TrackedObject.estimate" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the position estimate of the object from the Kalman filter.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>An array of shape (self.num_points, self.dim_points) containing the position estimate of the object on each axis.</p></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="norfair.tracker.TrackedObject.get_estimate">
+<code class="highlight language-python"><span class="n">get_estimate</span><span class="p">(</span><span class="n">absolute</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a class="headerlink" href="#norfair.tracker.TrackedObject.get_estimate" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the position estimate of the object from the Kalman filter in an absolute or relative format.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>absolute</code></td>
+          <td>
+                <code>bool, optional</code>
+          </td>
+          <td><p>If true the coordinates are returned in absolute format, by default False, by default False.</p></td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>An array of shape (self.num_points, self.dim_points) containing the position estimate of the object on each axis.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>Alert if the coordinates are requested in absolute format but the tracker has no coordinate transformation.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>norfair/tracker.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">581</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span>
+<span class="normal">593</span>
+<span class="normal">594</span>
+<span class="normal">595</span>
+<span class="normal">596</span>
+<span class="normal">597</span>
+<span class="normal">598</span>
+<span class="normal">599</span>
+<span class="normal">600</span>
+<span class="normal">601</span>
+<span class="normal">602</span>
+<span class="normal">603</span>
+<span class="normal">604</span>
+<span class="normal">605</span>
+<span class="normal">606</span>
+<span class="normal">607</span>
+<span class="normal">608</span>
+<span class="normal">609</span>
+<span class="normal">610</span>
+<span class="normal">611</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">absolute</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the position estimate of the object from the Kalman filter in an absolute or relative format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    absolute : bool, optional</span>
+<span class="sd">        If true the coordinates are returned in absolute format, by default False, by default False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        An array of shape (self.num_points, self.dim_points) containing the position estimate of the object on each axis.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Alert if the coordinates are requested in absolute format but the tracker has no coordinate transformation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim_z</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim_points</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_to_rel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">absolute</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">positions</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;You must provide &#39;coord_transformations&#39; to the tracker to get absolute coordinates&quot;</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">absolute</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">positions</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_to_rel</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
 
 <div class="doc doc-object doc-function">
 
@@ -2906,38 +3207,7 @@ which needs to reach a certain match rate to be converted into a full blown <cod
 
       <details class="quote">
         <summary>Source code in <code>norfair/tracker.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">586</span>
-<span class="normal">587</span>
-<span class="normal">588</span>
-<span class="normal">589</span>
-<span class="normal">590</span>
-<span class="normal">591</span>
-<span class="normal">592</span>
-<span class="normal">593</span>
-<span class="normal">594</span>
-<span class="normal">595</span>
-<span class="normal">596</span>
-<span class="normal">597</span>
-<span class="normal">598</span>
-<span class="normal">599</span>
-<span class="normal">600</span>
-<span class="normal">601</span>
-<span class="normal">602</span>
-<span class="normal">603</span>
-<span class="normal">604</span>
-<span class="normal">605</span>
-<span class="normal">606</span>
-<span class="normal">607</span>
-<span class="normal">608</span>
-<span class="normal">609</span>
-<span class="normal">610</span>
-<span class="normal">611</span>
-<span class="normal">612</span>
-<span class="normal">613</span>
-<span class="normal">614</span>
-<span class="normal">615</span>
-<span class="normal">616</span>
-<span class="normal">617</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">617</span>
 <span class="normal">618</span>
 <span class="normal">619</span>
 <span class="normal">620</span>
@@ -2976,8 +3246,39 @@ which needs to reach a certain match rate to be converted into a full blown <cod
 <span class="normal">653</span>
 <span class="normal">654</span>
 <span class="normal">655</span>
-<span class="normal">656</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detection</span><span class="p">:</span> <span class="s2">&quot;Detection&quot;</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Update tracked object with a new detection</span>
+<span class="normal">656</span>
+<span class="normal">657</span>
+<span class="normal">658</span>
+<span class="normal">659</span>
+<span class="normal">660</span>
+<span class="normal">661</span>
+<span class="normal">662</span>
+<span class="normal">663</span>
+<span class="normal">664</span>
+<span class="normal">665</span>
+<span class="normal">666</span>
+<span class="normal">667</span>
+<span class="normal">668</span>
+<span class="normal">669</span>
+<span class="normal">670</span>
+<span class="normal">671</span>
+<span class="normal">672</span>
+<span class="normal">673</span>
+<span class="normal">674</span>
+<span class="normal">675</span>
+<span class="normal">676</span>
+<span class="normal">677</span>
+<span class="normal">678</span>
+<span class="normal">679</span>
+<span class="normal">680</span>
+<span class="normal">681</span>
+<span class="normal">682</span>
+<span class="normal">683</span>
+<span class="normal">684</span>
+<span class="normal">685</span>
+<span class="normal">686</span>
+<span class="normal">687</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detection</span><span class="p">:</span> <span class="s2">&quot;Detection&quot;</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update tracked object with a new detection</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -3069,22 +3370,22 @@ which needs to reach a certain match rate to be converted into a full blown <cod
 
       <details class="quote">
         <summary>Source code in <code>norfair/tracker.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">688</span>
-<span class="normal">689</span>
-<span class="normal">690</span>
-<span class="normal">691</span>
-<span class="normal">692</span>
-<span class="normal">693</span>
-<span class="normal">694</span>
-<span class="normal">695</span>
-<span class="normal">696</span>
-<span class="normal">697</span>
-<span class="normal">698</span>
-<span class="normal">699</span>
-<span class="normal">700</span>
-<span class="normal">701</span>
-<span class="normal">702</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracked_object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Merge with a not yet initialized TrackedObject instance&quot;&quot;&quot;</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">719</span>
+<span class="normal">720</span>
+<span class="normal">721</span>
+<span class="normal">722</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
+<span class="normal">730</span>
+<span class="normal">731</span>
+<span class="normal">732</span>
+<span class="normal">733</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracked_object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge with a not yet initialized TrackedObject instance&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">reid_hit_counter</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">hit_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_period</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">point_hit_counter</span> <span class="o">=</span> <span class="n">tracked_object</span><span class="o">.</span><span class="n">point_hit_counter</span>
@@ -3202,38 +3503,7 @@ tracked objects with new detections. Label's type must be hashable for drawing p
 
         <details class="quote">
           <summary>Source code in <code>norfair/tracker.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">714</span>
-<span class="normal">715</span>
-<span class="normal">716</span>
-<span class="normal">717</span>
-<span class="normal">718</span>
-<span class="normal">719</span>
-<span class="normal">720</span>
-<span class="normal">721</span>
-<span class="normal">722</span>
-<span class="normal">723</span>
-<span class="normal">724</span>
-<span class="normal">725</span>
-<span class="normal">726</span>
-<span class="normal">727</span>
-<span class="normal">728</span>
-<span class="normal">729</span>
-<span class="normal">730</span>
-<span class="normal">731</span>
-<span class="normal">732</span>
-<span class="normal">733</span>
-<span class="normal">734</span>
-<span class="normal">735</span>
-<span class="normal">736</span>
-<span class="normal">737</span>
-<span class="normal">738</span>
-<span class="normal">739</span>
-<span class="normal">740</span>
-<span class="normal">741</span>
-<span class="normal">742</span>
-<span class="normal">743</span>
-<span class="normal">744</span>
-<span class="normal">745</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">745</span>
 <span class="normal">746</span>
 <span class="normal">747</span>
 <span class="normal">748</span>
@@ -3251,8 +3521,39 @@ tracked objects with new detections. Label's type must be hashable for drawing p
 <span class="normal">760</span>
 <span class="normal">761</span>
 <span class="normal">762</span>
-<span class="normal">763</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Detection</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Detections returned by the detector must be converted to a `Detection` object before being used by Norfair.</span>
+<span class="normal">763</span>
+<span class="normal">764</span>
+<span class="normal">765</span>
+<span class="normal">766</span>
+<span class="normal">767</span>
+<span class="normal">768</span>
+<span class="normal">769</span>
+<span class="normal">770</span>
+<span class="normal">771</span>
+<span class="normal">772</span>
+<span class="normal">773</span>
+<span class="normal">774</span>
+<span class="normal">775</span>
+<span class="normal">776</span>
+<span class="normal">777</span>
+<span class="normal">778</span>
+<span class="normal">779</span>
+<span class="normal">780</span>
+<span class="normal">781</span>
+<span class="normal">782</span>
+<span class="normal">783</span>
+<span class="normal">784</span>
+<span class="normal">785</span>
+<span class="normal">786</span>
+<span class="normal">787</span>
+<span class="normal">788</span>
+<span class="normal">789</span>
+<span class="normal">790</span>
+<span class="normal">791</span>
+<span class="normal">792</span>
+<span class="normal">793</span>
+<span class="normal">794</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Detection</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detections returned by the detector must be converted to a `Detection` object before being used by Norfair.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
