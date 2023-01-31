@@ -217,44 +217,14 @@ class Tracker:
             period,
         )
 
-        # Update not yet initialized tracked objects with yet unmatched detections
-        (
-            unmatched_detections,
-            matched_not_init_trackers,
-            _,
-        ) = self._update_objects_in_place(
-            self.distance_function,
-            self.distance_threshold,
-            [o for o in alive_objects if o.is_initializing],
-            unmatched_detections,
-            period,
-        )
-
         if self.reid_distance_function is not None:
             # Match unmatched initialized tracked objects with not yet initialized tracked objects
             _, _, _ = self._update_objects_in_place(
                 self.reid_distance_function,
                 self.reid_distance_threshold,
                 unmatched_init_trackers + dead_objects,
-                matched_not_init_trackers,
+                unmatched_detections,
                 period,
-            )
-
-        # Create new tracked objects from remaining unmatched detections
-        for detection in unmatched_detections:
-            self.tracked_objects.append(
-                self._obj_factory.create(
-                    initial_detection=detection,
-                    hit_counter_max=self.hit_counter_max,
-                    initialization_delay=self.initialization_delay,
-                    pointwise_hit_counter_max=self.pointwise_hit_counter_max,
-                    detection_threshold=self.detection_threshold,
-                    period=period,
-                    filter_factory=self.filter_factory,
-                    past_detections_length=self.past_detections_length,
-                    reid_hit_counter_max=self.reid_hit_counter_max,
-                    coord_transformations=coord_transformations,
-                )
             )
 
         return self.get_active_objects()
