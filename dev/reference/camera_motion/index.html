@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../img/icon.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.4.1">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.4.1">
     
     
       
@@ -1317,7 +1317,7 @@ Eventually, if the transformation is no longer able to match enough points, the 
         <tr>
           <td><code>method</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>One of openCV's method for finding homographies.
 Valid options are: <code>[0, cv.RANSAC, cv.LMEDS, cv.RHO]</code>, by default <code>cv.RANSAC</code></p></td>
@@ -1328,7 +1328,7 @@ Valid options are: <code>[0, cv.RANSAC, cv.LMEDS, cv.RHO]</code>, by default <co
         <tr>
           <td><code>ransac_reproj_threshold</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Maximum allowed reprojection error to treat a point pair as an inlier. More info in links below.</p></td>
           <td>
@@ -1338,7 +1338,7 @@ Valid options are: <code>[0, cv.RANSAC, cv.LMEDS, cv.RHO]</code>, by default <co
         <tr>
           <td><code>max_iters</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>The maximum number of RANSAC iterations.  More info in links below.</p></td>
           <td>
@@ -1348,7 +1348,7 @@ Valid options are: <code>[0, cv.RANSAC, cv.LMEDS, cv.RHO]</code>, by default <co
         <tr>
           <td><code>confidence</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Confidence level, must be between 0 and 1. More info in links below.</p></td>
           <td>
@@ -1358,7 +1358,7 @@ Valid options are: <code>[0, cv.RANSAC, cv.LMEDS, cv.RHO]</code>, by default <co
         <tr>
           <td><code>proportion_points_used_threshold</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Proportion of points that must be matched, otherwise the reference frame must be updated.</p></td>
           <td>
@@ -1571,7 +1571,7 @@ The optical flow is calculated on a sample of strong points (corners).</p>
         <tr>
           <td><code>max_points</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Maximum amount of points sampled.
 More points make the estimation process slower but more precise</p></td>
@@ -1582,7 +1582,7 @@ More points make the estimation process slower but more precise</p></td>
         <tr>
           <td><code>min_distance</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Minimum distance between the sample points.</p></td>
           <td>
@@ -1592,7 +1592,7 @@ More points make the estimation process slower but more precise</p></td>
         <tr>
           <td><code>block_size</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Size of an average block when finding the corners. More info in links below.</p></td>
           <td>
@@ -1602,7 +1602,7 @@ More points make the estimation process slower but more precise</p></td>
         <tr>
           <td><code>transformations_getter</code></td>
           <td>
-                <code><a class="autorefs autorefs-internal" title="norfair.camera_motion.TransformationGetter" href="#norfair.camera_motion.TransformationGetter">TransformationGetter</a>, optional</code>
+                <code><a class="autorefs autorefs-internal" title="norfair.camera_motion.TransformationGetter" href="#norfair.camera_motion.TransformationGetter">TransformationGetter</a></code>
           </td>
           <td><p>An instance of TransformationGetter. By default <a class="autorefs autorefs-internal" href="#norfair.camera_motion.HomographyTransformationGetter"><code>HomographyTransformationGetter</code></a></p></td>
           <td>
@@ -1612,7 +1612,7 @@ More points make the estimation process slower but more precise</p></td>
         <tr>
           <td><code>draw_flow</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>Draws the optical flow on the frame for debugging.</p></td>
           <td>
@@ -1622,7 +1622,7 @@ More points make the estimation process slower but more precise</p></td>
         <tr>
           <td><code>flow_color</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Tuple">Tuple</span>[int, int, int]], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Tuple">Tuple</span>[int, int, int]]</code>
           </td>
           <td><p>Color of the drawing, by default blue.</p></td>
           <td>
@@ -1632,7 +1632,7 @@ More points make the estimation process slower but more precise</p></td>
         <tr>
           <td><code>quality_level</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Parameter characterizing the minimal accepted quality of image corners.</p></td>
           <td>
@@ -1975,7 +1975,7 @@ More points make the estimation process slower but more precise</p></td>
         <tr>
           <td><code>mask</code></td>
           <td>
-                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span>, optional</code>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
           </td>
           <td><p>An optional mask to avoid areas of the frame when sampling the corner.
 Must be an array of shape <code>(frame.shape[0], frame.shape[1])</code>, dtype same as frame,

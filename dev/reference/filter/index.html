@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../img/icon.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.4.1">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.4.1">
     
     
       
@@ -643,7 +643,7 @@ while the latter requires creating your own class extending <code>FilterPyKalman
         <tr>
           <td><code>R</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the sensor measurement noise matrix, by default 4.0</p></td>
           <td>
@@ -653,7 +653,7 @@ while the latter requires creating your own class extending <code>FilterPyKalman
         <tr>
           <td><code>Q</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the process uncertainty, by default 0.1</p></td>
           <td>
@@ -663,7 +663,7 @@ while the latter requires creating your own class extending <code>FilterPyKalman
         <tr>
           <td><code>P</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the initial covariance matrix estimation, only in the entries that correspond to position (not speed) variables, by default 10.0</p></td>
           <td>
@@ -1052,7 +1052,7 @@ which shall be used as initial position estimation for it.</p></td>
         <tr>
           <td><code>R</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the sensor measurement noise matrix.</p></td>
           <td>
@@ -1062,7 +1062,7 @@ which shall be used as initial position estimation for it.</p></td>
         <tr>
           <td><code>Q</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the process uncertainty.</p></td>
           <td>
@@ -1072,7 +1072,7 @@ which shall be used as initial position estimation for it.</p></td>
         <tr>
           <td><code>pos_variance</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the initial covariance matrix estimation, only in the entries that correspond to position (not speed) variables.</p></td>
           <td>
@@ -1082,7 +1082,7 @@ which shall be used as initial position estimation for it.</p></td>
         <tr>
           <td><code>pos_vel_covariance</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the initial covariance matrix estimation, only in the entries that correspond to the covariance between position and speed.</p></td>
           <td>
@@ -1092,7 +1092,7 @@ which shall be used as initial position estimation for it.</p></td>
         <tr>
           <td><code>vel_variance</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Multiplier for the initial covariance matrix estimation, only in the entries that correspond to velocity (not position) variables.</p></td>
           <td>

@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../img/icon.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.4.1">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.4.1">
     
     
       
@@ -802,7 +802,7 @@ Detections and tracked objects whose distances are above this threshold won't be
         <tr>
           <td><code>hit_counter_max</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Each tracked objects keeps an internal hit counter which tracks how often it's getting matched to a detection,
 each time it gets a match this counter goes up, and each time it doesn't it goes down.</p>
@@ -815,7 +815,7 @@ and therefore defines how long an object can live without getting matched to any
         <tr>
           <td><code>initialization_delay</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Determines how large the object's hit counter must be in order to be considered as initialized, and get returned to the user as a real object.
 It must be smaller than <code>hit_counter_max</code> or otherwise the object would never be initialized.</p>
@@ -829,7 +829,7 @@ which can be problematic as this can result in objects appearing and immediately
         <tr>
           <td><code>pointwise_hit_counter_max</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Each tracked object keeps track of how often the points it's tracking have been getting matched.
 Points that are getting matched (<code>pointwise_hit_counter &gt; 0</code>) are said to be live, and points which aren't (<code>pointwise_hit_counter = 0</code>)
@@ -843,7 +843,7 @@ This argument defines how large the inertia for each point of a tracker can grow
         <tr>
           <td><code>detection_threshold</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Sets the threshold at which the scores of the points in a detection being fed into the tracker must dip below to be ignored by the tracker.</p></td>
           <td>
@@ -853,7 +853,7 @@ This argument defines how large the inertia for each point of a tracker can grow
         <tr>
           <td><code>filter_factory</code></td>
           <td>
-                <code><span title="norfair.filter.FilterFactory">FilterFactory</span>, optional</code>
+                <code><span title="norfair.filter.FilterFactory">FilterFactory</span></code>
           </td>
           <td><p>This parameter can be used to change what filter the <a class="autorefs autorefs-internal" href="#norfair.tracker.TrackedObject"><code>TrackedObject</code></a> instances created by the tracker will use.
 Defaults to <a class="autorefs autorefs-internal" href="../filter/#norfair.filter.OptimizedKalmanFilterFactory"><code>OptimizedKalmanFilterFactory()</code></a></p></td>
@@ -864,7 +864,7 @@ Defaults to <a class="autorefs autorefs-internal" href="../filter/#norfair.filte
         <tr>
           <td><code>past_detections_length</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>How many past detections to save for each tracked object.
 Norfair tries to distribute these past detections uniformly through the object's lifetime so they're more representative.
@@ -1681,7 +1681,7 @@ The currently alive and initialized tracked objects are returned</p>
         <tr>
           <td><code>detections</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="#norfair.tracker.Detection">Detection</a>]], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="#norfair.tracker.Detection">Detection</a>]]</code>
           </td>
           <td><p>A list of <a class="autorefs autorefs-internal" href="#norfair.tracker.Detection"><code>Detection</code></a> which represent the detections found in the current frame being processed.</p>
 <p>If no detections have been found in the current frame, or the user is purposely skipping frames to improve video processing time,
@@ -1693,7 +1693,7 @@ this argument should be set to None or ignored, as the update function is needed
         <tr>
           <td><code>period</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>The user can chose not to run their detector on all frames, so as to process video faster.
 This parameter sets every how many frames the detector is getting ran,
@@ -2922,7 +2922,7 @@ which needs to reach a certain match rate to be converted into a full blown <cod
         <tr>
           <td><code>absolute</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>If true the coordinates are returned in absolute format, by default False, by default False.</p></td>
           <td>
@@ -3075,7 +3075,7 @@ which needs to reach a certain match rate to be converted into a full blown <cod
         <tr>
           <td><code>period</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>frames corresponding to the period of time since last update.</p></td>
           <td>
@@ -3333,7 +3333,7 @@ which needs to reach a certain match rate to be converted into a full blown <cod
         <tr>
           <td><code>scores</code></td>
           <td>
-                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span>, optional</code>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
           </td>
           <td><p>An array of length <code>n_points</code> which assigns a score to each of the points defined in <code>points</code>.</p>
 <p>This is used to inform the tracker of which points to ignore;
@@ -3346,7 +3346,7 @@ any point with a score below <code>detection_threshold</code> will be ignored.</
         <tr>
           <td><code>data</code></td>
           <td>
-                <code><span title="typing.Any">Any</span>, optional</code>
+                <code><span title="typing.Any">Any</span></code>
           </td>
           <td><p>The place to store any extra data which may be useful when calculating the distance function.
 Anything stored here will be available to use inside the distance function.</p>
@@ -3359,7 +3359,7 @@ detection to aid in its tracking.</p></td>
         <tr>
           <td><code>label</code></td>
           <td>
-                <code><span title="typing.Hashable">Hashable</span>, optional</code>
+                <code><span title="typing.Hashable">Hashable</span></code>
           </td>
           <td><p>When working with multiple classes the detection's label can be stored to be used as a matching condition when associating
 tracked objects with new detections. Label's type must be hashable for drawing purposes.</p></td>
@@ -3370,7 +3370,7 @@ tracked objects with new detections. Label's type must be hashable for drawing p
         <tr>
           <td><code>embedding</code></td>
           <td>
-                <code><span title="typing.Any">Any</span>, optional</code>
+                <code><span title="typing.Any">Any</span></code>
           </td>
           <td><p>The embedding for the reid_distance.</p></td>
           <td>

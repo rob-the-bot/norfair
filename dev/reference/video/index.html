@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../img/icon.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.4.1">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.4.1">
     
     
       
@@ -653,7 +653,7 @@
         <tr>
           <td><code>camera</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>An integer representing the device id of the camera to be used as the video source.</p>
 <p>Webcams tend to have an id of <code>0</code>. Arguments <code>camera</code> and <code>input_path</code> can't be used at the same time, one must be chosen.</p></td>
@@ -664,7 +664,7 @@
         <tr>
           <td><code>input_path</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[str], optional</code>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>A string consisting of the path to the video file to be used as the video source.</p>
 <p>Arguments <code>camera</code> and <code>input_path</code> can't be used at the same time, one must be chosen.</p></td>
@@ -675,7 +675,7 @@
         <tr>
           <td><code>output_path</code></td>
           <td>
-                <code>str, optional</code>
+                <code>str</code>
           </td>
           <td><p>The path to the output video to be generated.
 Can be a folder were the file will be created or a full path with a file name.</p></td>
@@ -686,7 +686,7 @@ Can be a folder were the file will be created or a full path with a file name.</
         <tr>
           <td><code>output_fps</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[float], optional</code>
+                <code><span title="typing.Optional">Optional</span>[float]</code>
           </td>
           <td><p>The frames per second at which to encode the output video file.</p>
 <p>If not provided it is set to be equal to the input video source's fps.
@@ -701,7 +701,7 @@ due to the latency added by the detector.</p></td>
         <tr>
           <td><code>label</code></td>
           <td>
-                <code>str, optional</code>
+                <code>str</code>
           </td>
           <td><p>Label to add to the progress bar that appears when processing the current video.</p></td>
           <td>
@@ -711,7 +711,7 @@ due to the latency added by the detector.</p></td>
         <tr>
           <td><code>output_fourcc</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[str], optional</code>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>OpenCV encoding for output video file.
 By default we use <code>mp4v</code> for <code>.mp4</code> and <code>XVID</code> for <code>.avi</code>. This is a combination that works on most systems but
@@ -724,7 +724,7 @@ Notice that some fourcc are not compatible with some extensions.</p></td>
         <tr>
           <td><code>output_extension</code></td>
           <td>
-                <code>str, optional</code>
+                <code>str</code>
           </td>
           <td><p>File extension used for the output video. Ignored if <code>output_path</code> is not a folder.</p></td>
           <td>
@@ -1483,7 +1483,7 @@ Notice that some fourcc are not compatible with some extensions.</p></td>
         <tr>
           <td><code>downsample_ratio</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>How much to downsample the frame being show.</p>
 <p>Useful when streaming the GUI video display through a slow internet connection using something like X11 forwarding on an ssh connection.</p></td>

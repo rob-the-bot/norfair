@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../img/icon.svg">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.4.1">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.4.1">
     
     
       
@@ -1029,7 +1029,7 @@
         <tr>
           <td><code>drawables</code></td>
           <td>
-                <code><span title="typing.Union">Union</span>[<span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>], <span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.TrackedObject" href="../tracker/#norfair.tracker.TrackedObject">TrackedObject</a>]], optional</code>
+                <code><span title="typing.Union">Union</span>[<span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>], <span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.TrackedObject" href="../tracker/#norfair.tracker.TrackedObject">TrackedObject</a>]]</code>
           </td>
           <td><p>List of objects to draw, Detections and TrackedObjects are accepted.</p></td>
           <td>
@@ -1039,7 +1039,7 @@
         <tr>
           <td><code>radius</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Radius of the circles representing each point.
 By default a sensible value is picked considering the frame size.</p></td>
@@ -1050,7 +1050,7 @@ By default a sensible value is picked considering the frame size.</p></td>
         <tr>
           <td><code>thickness</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Thickness or width of the line.</p></td>
           <td>
@@ -1060,7 +1060,7 @@ By default a sensible value is picked considering the frame size.</p></td>
         <tr>
           <td><code>color</code></td>
           <td>
-                <code><span title="norfair.drawing.color.ColorLike">ColorLike</span>, optional</code>
+                <code><span title="norfair.drawing.color.ColorLike">ColorLike</span></code>
           </td>
           <td><p>This parameter can take:</p>
 <ol>
@@ -1086,7 +1086,7 @@ selected color will be the same for all objects (Palette's default Color).</p></
         <tr>
           <td><code>color_by_label</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p><strong>Deprecated</strong>. set <code>color="by_label"</code>.</p></td>
           <td>
@@ -1096,7 +1096,7 @@ selected color will be the same for all objects (Palette's default Color).</p></
         <tr>
           <td><code>draw_labels</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>If set to True, the label is added to a title that is drawn on top of the box.
 If an object doesn't have a label this parameter is ignored.</p></td>
@@ -1107,7 +1107,7 @@ If an object doesn't have a label this parameter is ignored.</p></td>
         <tr>
           <td><code>draw_scores</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>If set to True, the score is added to a title that is drawn on top of the box.
 If an object doesn't have a label this parameter is ignored.</p></td>
@@ -1118,7 +1118,7 @@ If an object doesn't have a label this parameter is ignored.</p></td>
         <tr>
           <td><code>text_size</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Size of the title, the value is used as a multiplier of the base size of the font.
 By default the size is scaled automatically based on the frame size.</p></td>
@@ -1129,7 +1129,7 @@ By default the size is scaled automatically based on the frame size.</p></td>
         <tr>
           <td><code>draw_ids</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>If set to True, the id is added to a title that is drawn on top of the box.
 If an object doesn't have an id this parameter is ignored.</p></td>
@@ -1140,7 +1140,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
         <tr>
           <td><code>draw_points</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>Set to False to hide the points and just draw the text.</p></td>
           <td>
@@ -1150,7 +1150,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
         <tr>
           <td><code>text_thickness</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Thickness of the font. By default it's scaled with the <code>text_size</code>.</p></td>
           <td>
@@ -1160,7 +1160,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
         <tr>
           <td><code>text_color</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="norfair.drawing.color.ColorLike">ColorLike</span>], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="norfair.drawing.color.ColorLike">ColorLike</span>]</code>
           </td>
           <td><p>Color of the text. By default the same color as the box is used.</p></td>
           <td>
@@ -1170,7 +1170,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
         <tr>
           <td><code>hide_dead_points</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>Set this param to False to always draw all points, even the ones considered "dead".
 A point is "dead" when the corresponding value of <code>TrackedObject.live_points</code>
@@ -1183,7 +1183,7 @@ All points of a detection are considered to be alive.</p></td>
         <tr>
           <td><code>detections</code></td>
           <td>
-                <code><span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>], optional</code>
+                <code><span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>]</code>
           </td>
           <td><p><strong>Deprecated</strong>. use drawables.</p></td>
           <td>
@@ -1193,7 +1193,7 @@ All points of a detection are considered to be alive.</p></td>
         <tr>
           <td><code>label_size</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p><strong>Deprecated</strong>. text_size.</p></td>
           <td>
@@ -1908,7 +1908,7 @@ All points of a detection are considered to be alive.</p></td>
 
 
 <h3 class="doc doc-heading" id="norfair.drawing.draw_boxes.draw_boxes">
-<code class="highlight language-python"><span class="n">draw_boxes</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">drawables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;by_id&#39;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color_by_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">text_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">text_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text_thickness</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_scores</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">draw_boxes</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">drawables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;by_id&#39;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color_by_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">text_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_ids</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text_thickness</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draw_scores</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a class="headerlink" href="#norfair.drawing.draw_boxes.draw_boxes" title="Permanent link">#</a></h3>
 
@@ -1941,7 +1941,7 @@ All points of a detection are considered to be alive.</p></td>
         <tr>
           <td><code>drawables</code></td>
           <td>
-                <code><span title="typing.Union">Union</span>[<span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>], <span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.TrackedObject" href="../tracker/#norfair.tracker.TrackedObject">TrackedObject</a>]], optional</code>
+                <code><span title="typing.Union">Union</span>[<span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>], <span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.TrackedObject" href="../tracker/#norfair.tracker.TrackedObject">TrackedObject</a>]]</code>
           </td>
           <td><p>List of objects to draw, Detections and TrackedObjects are accepted.
 This objects are assumed to contain 2 bi-dimensional points defining
@@ -1953,7 +1953,7 @@ the bounding box as <code>[[x0, y0], [x1, y1]]</code>.</p></td>
         <tr>
           <td><code>color</code></td>
           <td>
-                <code><span title="norfair.drawing.color.ColorLike">ColorLike</span>, optional</code>
+                <code><span title="norfair.drawing.color.ColorLike">ColorLike</span></code>
           </td>
           <td><p>This parameter can take:</p>
 <ol>
@@ -1979,7 +1979,7 @@ selected color will be the same for all objects (Palette's default Color).</p></
         <tr>
           <td><code>thickness</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Thickness or width of the line.</p></td>
           <td>
@@ -1989,7 +1989,7 @@ selected color will be the same for all objects (Palette's default Color).</p></
         <tr>
           <td><code>random_color</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p><strong>Deprecated</strong>. Set color="random".</p></td>
           <td>
@@ -1999,7 +1999,7 @@ selected color will be the same for all objects (Palette's default Color).</p></
         <tr>
           <td><code>color_by_label</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p><strong>Deprecated</strong>. Set color="by_label".</p></td>
           <td>
@@ -2009,7 +2009,7 @@ selected color will be the same for all objects (Palette's default Color).</p></
         <tr>
           <td><code>draw_labels</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>If set to True, the label is added to a title that is drawn on top of the box.
 If an object doesn't have a label this parameter is ignored.</p></td>
@@ -2020,7 +2020,7 @@ If an object doesn't have a label this parameter is ignored.</p></td>
         <tr>
           <td><code>draw_scores</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>If set to True, the score is added to a title that is drawn on top of the box.
 If an object doesn't have a label this parameter is ignored.</p></td>
@@ -2031,7 +2031,7 @@ If an object doesn't have a label this parameter is ignored.</p></td>
         <tr>
           <td><code>text_size</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[float], optional</code>
+                <code><span title="typing.Optional">Optional</span>[float]</code>
           </td>
           <td><p>Size of the title, the value is used as a multiplier of the base size of the font.
 By default the size is scaled automatically based on the frame size.</p></td>
@@ -2042,18 +2042,18 @@ By default the size is scaled automatically based on the frame size.</p></td>
         <tr>
           <td><code>draw_ids</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>If set to True, the id is added to a title that is drawn on top of the box.
 If an object doesn't have an id this parameter is ignored.</p></td>
           <td>
-                <code>False</code>
+                <code>True</code>
           </td>
         </tr>
         <tr>
           <td><code>text_color</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="norfair.drawing.color.ColorLike">ColorLike</span>], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="norfair.drawing.color.ColorLike">ColorLike</span>]</code>
           </td>
           <td><p>Color of the text. By default the same color as the box is used.</p></td>
           <td>
@@ -2063,7 +2063,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
         <tr>
           <td><code>text_thickness</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Thickness of the font. By default it's scaled with the <code>text_size</code>.</p></td>
           <td>
@@ -2073,7 +2073,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
         <tr>
           <td><code>draw_box</code></td>
           <td>
-                <code>bool, optional</code>
+                <code>bool</code>
           </td>
           <td><p>Set to False to hide the box and just draw the text.</p></td>
           <td>
@@ -2083,7 +2083,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
         <tr>
           <td><code>detections</code></td>
           <td>
-                <code><span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>], optional</code>
+                <code><span title="typing.Sequence">Sequence</span>[<a class="autorefs autorefs-internal" title="norfair.tracker.Detection" href="../tracker/#norfair.tracker.Detection">Detection</a>]</code>
           </td>
           <td><p><strong>Deprecated</strong>. Use drawables.</p></td>
           <td>
@@ -2320,7 +2320,7 @@ If an object doesn't have an id this parameter is ignored.</p></td>
     <span class="n">color_by_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Deprecated</span>
     <span class="n">draw_labels</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">text_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">draw_ids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">draw_ids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">text_color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ColorLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">text_thickness</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">draw_box</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -3678,7 +3678,7 @@ This is the format opencv uses.</p>
         <tr>
           <td><code>get_points_to_draw</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Callable">Callable</span>[[<span title="numpy">np</span>.<span title="numpy.array">array</span>], <span title="numpy">np</span>.<span title="numpy.array">array</span>]], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Callable">Callable</span>[[<span title="numpy">np</span>.<span title="numpy.array">array</span>], <span title="numpy">np</span>.<span title="numpy.array">array</span>]]</code>
           </td>
           <td><p>Function that takes a list of points (the <code>.estimate</code> attribute of a <a class="autorefs autorefs-internal" href="../tracker/#norfair.tracker.TrackedObject"><code>TrackedObject</code></a>)
 and returns a list of points for which we want to draw their paths.</p>
@@ -3690,7 +3690,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>thickness</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Thickness of the circles representing the paths of interest.</p></td>
           <td>
@@ -3700,7 +3700,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>color</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Tuple">Tuple</span>[int, int, int]], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Tuple">Tuple</span>[int, int, int]]</code>
           </td>
           <td><p><a class="autorefs autorefs-internal" href="#norfair.drawing.color.Color">Color</a> of the circles representing the paths of interest.</p></td>
           <td>
@@ -3710,7 +3710,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>radius</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Radius of the circles representing the paths of interest.</p></td>
           <td>
@@ -3720,7 +3720,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>attenuation</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>A float number in [0, 1] that dictates the speed at which the path is erased.
 if it is <code>0</code> then the path is never erased.</p></td>
@@ -4215,7 +4215,7 @@ if it is <code>0</code> then the path is never erased.</p></td>
         <tr>
           <td><code>get_points_to_draw</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Callable">Callable</span>[[<span title="numpy">np</span>.<span title="numpy.array">array</span>], <span title="numpy">np</span>.<span title="numpy.array">array</span>]], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Callable">Callable</span>[[<span title="numpy">np</span>.<span title="numpy.array">array</span>], <span title="numpy">np</span>.<span title="numpy.array">array</span>]]</code>
           </td>
           <td><p>Function that takes a list of points (the <code>.estimate</code> attribute of a <a class="autorefs autorefs-internal" href="../tracker/#norfair.tracker.TrackedObject"><code>TrackedObject</code></a>)
 and returns a list of points for which we want to draw their paths.</p>
@@ -4227,7 +4227,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>thickness</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Thickness of the circles representing the paths of interest.</p></td>
           <td>
@@ -4237,7 +4237,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>color</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Tuple">Tuple</span>[int, int, int]], optional</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Tuple">Tuple</span>[int, int, int]]</code>
           </td>
           <td><p><a class="autorefs autorefs-internal" href="#norfair.drawing.color.Color">Color</a> of the circles representing the paths of interest.</p></td>
           <td>
@@ -4247,7 +4247,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>radius</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[int], optional</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>Radius of the circles representing the paths of interest.</p></td>
           <td>
@@ -4257,7 +4257,7 @@ and returns a list of points for which we want to draw their paths.</p>
         <tr>
           <td><code>max_history</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Number of past points to include in the path. High values make the drawing slower</p></td>
           <td>
@@ -4601,7 +4601,7 @@ In this case, a warning will be logged and the frames will be cropped to avoid e
         <tr>
           <td><code>scale</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>The resulting video will have a resolution of <code>scale * (H, W)</code> where HxW is the resolution of the original video.
 Use a bigger scale if the camera is moving too much.</p></td>
@@ -4612,7 +4612,7 @@ Use a bigger scale if the camera is moving too much.</p></td>
         <tr>
           <td><code>attenuation</code></td>
           <td>
-                <code>float, optional</code>
+                <code>float</code>
           </td>
           <td><p>Controls how fast the older frames fade to black.</p></td>
           <td>
@@ -5256,7 +5256,7 @@ of latitude and longitude lines over the surface of the sphere.</p>
         <tr>
           <td><code>grid_size</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>How many points to draw.</p></td>
           <td>
@@ -5266,7 +5266,7 @@ of latitude and longitude lines over the surface of the sphere.</p>
         <tr>
           <td><code>radius</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Size of each point.</p></td>
           <td>
@@ -5276,7 +5276,7 @@ of latitude and longitude lines over the surface of the sphere.</p>
         <tr>
           <td><code>thickness</code></td>
           <td>
-                <code>int, optional</code>
+                <code>int</code>
           </td>
           <td><p>Thickness of each point</p></td>
           <td>
@@ -5286,7 +5286,7 @@ of latitude and longitude lines over the surface of the sphere.</p>
         <tr>
           <td><code>color</code></td>
           <td>
-                <code><span title="norfair.drawing.color.ColorType">ColorType</span>, optional</code>
+                <code><span title="norfair.drawing.color.ColorType">ColorType</span></code>
           </td>
           <td><p>Color of the points.</p></td>
           <td>
@@ -5296,7 +5296,7 @@ of latitude and longitude lines over the surface of the sphere.</p>
         <tr>
           <td><code>polar</code></td>
           <td>
-                <code>Bool, optional</code>
+                <code>Bool</code>
           </td>
           <td><p>If True, the points on the first frame are drawn as if the camera were pointing to a pole (viewed from the center of the earth).
 By default, False is used which means the points are drawn as if the camera were pointing to the Equator.</p></td>
